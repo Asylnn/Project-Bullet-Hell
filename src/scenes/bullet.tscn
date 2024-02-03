@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://seslplamiuj8"]
+
+[ext_resource type="Script" path="res://src/scripts/bullet.gd" id="1_gbarv"]
+[ext_resource type="PackedScene" uid="uid://d0bhm4qxb7fnl" path="res://src/scenes/entity.tscn" id="1_nyl3d"]
+
+[node name="Bullet" instance=ExtResource("1_nyl3d")]
+z_index = 2
+script = ExtResource("1_gbarv")

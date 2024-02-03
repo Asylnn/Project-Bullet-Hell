@@ -1,0 +1,2 @@
+Faire en sorte que bullet hérite de entity, convertisse 
+Fix bug where when pausing and leaving with escape, you can't go back to the game

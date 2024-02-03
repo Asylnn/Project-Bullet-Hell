@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7tnc5ioo421q"]
+
+[ext_resource type="PackedScene" uid="uid://dnelxik8wwmah" path="res://src/scenes/inventory_slot.tscn" id="1_p6u4v"]
+[ext_resource type="Script" path="res://src/scenes/active_spell_slot.gd" id="2_6c07b"]
+
+[node name="Active Spell Slot" instance=ExtResource("1_p6u4v")]
+script = ExtResource("2_6c07b")
+
+[node name="Spell Timer" type="Timer" parent="." index="1"]
+one_shot = true

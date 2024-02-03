@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://da0r78ku1axgl"]
+
+[ext_resource type="Script" path="res://src/scripts/player.gd" id="1_8d8j3"]
+[ext_resource type="Texture2D" uid="uid://0trehqblh1u2" path="res://Sprites/ship2.png" id="2_2d2aa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hb6y0"]
+radius = 7.61577
+
+[node name="Player" type="Area2D" groups=["Player"]]
+position = Vector2(193, 142)
+script = ExtResource("1_8d8j3")
+
+[node name="Ship Sprite" type="Sprite2D" parent="."]
+position = Vector2(3, 6)
+texture = ExtResource("2_2d2aa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hb6y0")
+
+[node name="ShootingTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

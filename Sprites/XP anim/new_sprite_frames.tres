@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bp3w0wj2cu2e5"]
+
+[ext_resource type="Texture2D" uid="uid://b35vt6khcpfg3" path="res://Sprites/XP anim/XP.png" id="1_ilnxt"]
+[ext_resource type="Texture2D" uid="uid://dwtdqcl4a03n2" path="res://Sprites/XP anim/XP2.png" id="2_dj0d8"]
+[ext_resource type="Texture2D" uid="uid://bmiadttqts8nw" path="res://Sprites/XP anim/XP3.png" id="3_hxpfh"]
+[ext_resource type="Texture2D" uid="uid://cy277qdur4mi" path="res://Sprites/XP anim/XP4.png" id="4_5ef8t"]
+[ext_resource type="Texture2D" uid="uid://bga7yrr2yr21x" path="res://Sprites/XP anim/XP5.png" id="5_a15c4"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ilnxt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dj0d8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hxpfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5ef8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a15c4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

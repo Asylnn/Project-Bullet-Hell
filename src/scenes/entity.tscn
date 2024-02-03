@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0bhm4qxb7fnl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6day"]
+
+[node name="Entity" type="Area2D"]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y6day")
+
+[node name="Sprite" type="Sprite2D" parent="."]
