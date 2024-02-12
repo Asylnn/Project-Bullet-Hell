@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dygdssku85ksm"]
+
+[ext_resource type="PackedScene" uid="uid://clr6c85q43x66" path="res://src/scenes/friendly_bullet.tscn" id="1_lnw2v"]
+[ext_resource type="Texture2D" uid="uid://tpf8r0qkncsy" path="res://Sprites/star.png" id="2_00jq5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8mq6"]
+resource_local_to_scene = true
+size = Vector2(56, 58)
+
+[node name="Friendly Bullet" instance=ExtResource("1_lnw2v")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_r8mq6")
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("2_00jq5")

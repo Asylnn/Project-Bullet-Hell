@@ -20,13 +20,11 @@ func _construct(_bullet_scene : PackedScene, _timeBetweenEachAttack : float, _nb
 	#$Timer
 
 func shoot():
-	var direction: Vector2 = target
 	for j in nbOfWaves : 
 		if j > 0 :
 			await get_tree().create_timer(dt, false).timeout
-		if target == Vector2(-1,-1):
-			direction = (playing_field.playerPosition - get_parent().position)
 		for i in nbOfShots :
+			var direction = get_direction(target)
 			var rotation = 0#direction.angle()
 			if nbOfShots != 1:
 				rotation = PI/180*angle*(float(i)/(nbOfShots - 1) - 0.5)

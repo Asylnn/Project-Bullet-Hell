@@ -14,11 +14,17 @@ func _ready():
 		rotate = movement_manager.rotate
 		if "speed" in self && self.speed == -1: 
 			self.speed = movement_manager.global_speed
+			
+func armed():
+	var movement_manager = get_parent()
+	rotate = movement_manager.rotate
 	
 func _moveAndRotate(entity : Entity, direction: Vector2, speed: float, delta: float):
 	direction = direction.normalized()
 	entity.position += direction*speed*delta
 	if rotate : 
+		if "damage" in entity:
+			print("rotatew")
 		entity.rotation = direction.angle() + PI/2
 	
 	if (entity.position - destination).length() <= 2:

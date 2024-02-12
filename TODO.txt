@@ -1,3 +1,5 @@
 Faire en sorte que bullet hérite de entity, convertisse 
 Fix bug where when pausing and leaving with escape, you can't go back to the game
 Make a better movement manager where rotate and base speed are passed down to movement orders without spaghetti code
+There is a duplicate property : cooldown and time between each attacks for spellcard, must be cohesive
+also fix shitty spell_bar code

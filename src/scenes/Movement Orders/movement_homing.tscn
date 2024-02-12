@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b286j6mp55jqu"]
+
+[ext_resource type="Script" path="res://src/scenes/Movement Orders/movement_homing.gd" id="1_ahktq"]
+
+[node name="Movement Homing" type="Node2D"]
+script = ExtResource("1_ahktq")

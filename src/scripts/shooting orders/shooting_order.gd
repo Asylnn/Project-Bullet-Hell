@@ -9,6 +9,12 @@ func _base_construct(_bullet_scene : PackedScene, _timeBetweenEachAttacks : floa
 	bullet_scene = _bullet_scene
 	timeBetweenEachAttacks = _timeBetweenEachAttacks
 
+func get_direction(target):
+	var direction: Vector2 = target
+	if target == Vector2(-1,-1):
+		direction = (playing_field.playerPosition - get_parent().position)
+	return direction
+	
 func _ready():
 	playing_field = get_tree().get_first_node_in_group("Field")
 	# We want the pattern to only fire when pressing the button when the damage is different to -1, it's to say it's a player's projectile
@@ -20,7 +26,6 @@ func shoot():
 	pass
 
 func spawn_bullet(direction: Vector2, rotation: float):
-	print("test12")
 	direction = direction.rotated(rotation)
 	var bullet = bullet_scene.instantiate()
 	if damage != -1:
@@ -31,9 +36,11 @@ func spawn_bullet(direction: Vector2, rotation: float):
 	var manager = preload("res://src/scenes/Movement Orders/movement_manager.tscn").instantiate()
 	var movement_order = get_children().filter(func(child): return not child is Timer)[0].duplicate()
 	manager.rotate = true
-	movement_order.direction = direction
+	if "direction" in movement_order:
+		movement_order.direction = direction
 	bullet.add_child(manager)
 	bullet.get_node("Movement Manager").add_child(movement_order)
+	movement_order.armed()
 	bullet.rotation = direction.angle() + PI/2
 	playing_field.add_child(bullet)
 	

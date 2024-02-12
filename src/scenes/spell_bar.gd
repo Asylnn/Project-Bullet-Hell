@@ -25,6 +25,13 @@ func _process(delta):
 			if time_left == 0 && Input.is_action_pressed("shoot"):
 				spellSlot.activate_spell()
 
+func _get_first_free_slot():
+	for i in len(spellSlots):
+		var spellSlot = spellSlots[i][1]
+		if not spellSlot.has_spell:
+			return spellSlot
+	return null
+
 func _update_progress_bar(cooldown, id, isSpellRemoved):
 	if isSpellRemoved:
 		spellSlots[id][0].value = 0

@@ -7,7 +7,7 @@
 radius = 29.0
 height = 80.0
 
-[node name="Enemy" type="Area2D"]
+[node name="Enemy" type="Area2D" groups=["Enemy"]]
 z_index = 1
 position = Vector2(215, 172)
 script = ExtResource("1_vlsw7")
