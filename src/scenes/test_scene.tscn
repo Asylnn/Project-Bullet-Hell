@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://yxwv0kccm3pr"]
+
+[ext_resource type="Script" path="res://src/scripts/movement Orders/movement_pattern.gd" id="1_b4jrx"]
+[ext_resource type="Texture2D" uid="uid://djh6m1k8dtjxo" path="res://Sprites/Circuit Fragment.png" id="2_aqdnr"]
+
+[node name="Area2D" type="Area2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Node2D"]
+script = ExtResource("1_b4jrx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_aqdnr")

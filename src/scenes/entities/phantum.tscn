@@ -1,0 +1,49 @@
+[gd_scene load_steps=11 format=3 uid="uid://h1b3oqp0thi5"]
+
+[ext_resource type="PackedScene" uid="uid://d0bhm4qxb7fnl" path="res://src/scenes/entity.tscn" id="1_3rmgu"]
+[ext_resource type="Script" path="res://src/scripts/enemy.gd" id="2_6j3be"]
+[ext_resource type="Texture2D" uid="uid://dtqdis8jxwfv1" path="res://Sprites/Phantom.png" id="3_e7due"]
+[ext_resource type="PackedScene" uid="uid://bgxvn8e0sttup" path="res://src/scenes/Movement Orders/movement_manager.tscn" id="3_wqpx2"]
+[ext_resource type="PackedScene" uid="uid://di45m6g1xhobg" path="res://src/scenes/Movement Orders/movement_to_point.tscn" id="4_x1u52"]
+[ext_resource type="PackedScene" uid="uid://r74mmj7guv6w" path="res://src/scenes/Movement Orders/movement_circle.tscn" id="5_pei63"]
+[ext_resource type="PackedScene" uid="uid://1rh462k56wrf" path="res://src/scenes/shooting orders/shoot_simple.tscn" id="7_53qru"]
+[ext_resource type="PackedScene" uid="uid://d2tjo7ap2q23f" path="res://src/scenes/enemy_bullet.tscn" id="8_q8vie"]
+[ext_resource type="PackedScene" uid="uid://cihiwggdwky7v" path="res://src/scenes/Movement Orders/movement_line.tscn" id="9_j1ynu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsdid"]
+resource_local_to_scene = true
+size = Vector2(54, 66)
+
+[node name="Phantum" instance=ExtResource("1_3rmgu")]
+script = ExtResource("2_6j3be")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_nsdid")
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("3_e7due")
+
+[node name="Movement Manager" parent="." index="2" instance=ExtResource("3_wqpx2")]
+rotate = false
+
+[node name="Movement To Point" parent="Movement Manager" index="0" instance=ExtResource("4_x1u52")]
+target = Vector2(525, 400)
+speed = 200.0
+template = false
+
+[node name="Movement Circle" parent="Movement Manager" index="1" instance=ExtResource("5_pei63")]
+center = Vector2(525, 550)
+speed = 400.0
+template = false
+
+[node name="Shoot Simple" parent="." index="3" instance=ExtResource("7_53qru")]
+nbOfWaves = 2
+nbOfShots = 4
+angle = 30.0
+dt = 1.0
+bullet_scene = ExtResource("8_q8vie")
+
+[node name="Movement Line" parent="Shoot Simple" index="0" instance=ExtResource("9_j1ynu")]
+speed = 500.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

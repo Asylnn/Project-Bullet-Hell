@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://be6jl7hkhk83f"]
+[gd_scene load_steps=16 format=3 uid="uid://be6jl7hkhk83f"]
 
 [ext_resource type="Script" path="res://src/scripts/stage_1.gd" id="1_4gyp0"]
 [ext_resource type="PackedScene" uid="uid://da0r78ku1axgl" path="res://src/scenes/player.tscn" id="2_fbvrm"]
@@ -9,11 +9,12 @@
 [ext_resource type="Script" path="res://src/scenes/spell_bar.gd" id="4_pjxr0"]
 [ext_resource type="PackedScene" uid="uid://b7tnc5ioo421q" path="res://src/scenes/active_spell_slot.tscn" id="5_vf056"]
 [ext_resource type="Texture2D" uid="uid://cdx0t5kjpflut" path="res://Sprites/trail.png" id="5_ys2kl"]
-[ext_resource type="PackedScene" uid="uid://csxpur110l1c1" path="res://src/scenes/enemy.tscn" id="6_h3pof"]
 [ext_resource type="Texture2D" uid="uid://tsoric5wov3k" path="res://Sprites/Interface.png" id="6_hkkhn"]
 [ext_resource type="PackedScene" uid="uid://jetxr5evmss0" path="res://src/scenes/xp.tscn" id="10_atx4p"]
 [ext_resource type="PackedScene" uid="uid://bmifckslyml5a" path="res://src/scenes/death_menu.tscn" id="10_io8fh"]
 [ext_resource type="PackedScene" uid="uid://dnelxik8wwmah" path="res://src/scenes/inventory_slot.tscn" id="12_sboef"]
+[ext_resource type="PackedScene" uid="uid://h1b3oqp0thi5" path="res://src/scenes/entities/phantum.tscn" id="15_5hykm"]
+[ext_resource type="PackedScene" uid="uid://yxwv0kccm3pr" path="res://src/scenes/test_scene.tscn" id="15_h5tek"]
 
 [node name="Stage 1" type="Node2D"]
 process_mode = 3
@@ -59,10 +60,10 @@ script = ExtResource("3_vy42h")
 
 [node name="Spell Bar" type="GridContainer" parent="."]
 z_index = 3
-offset_left = 1390.0
-offset_top = 865.0
-offset_right = 1602.0
-offset_bottom = 946.0
+offset_left = 1435.0
+offset_top = 833.0
+offset_right = 1709.0
+offset_bottom = 910.0
 columns = 4
 script = ExtResource("4_pjxr0")
 
@@ -99,15 +100,12 @@ process_mode = 1
 script = ExtResource("4_ke03q")
 
 [node name="Trail" type="Sprite2D" parent="Playing Field"]
-position = Vector2(565, -433)
+position = Vector2(565, -444)
 texture = ExtResource("5_ys2kl")
 
 [node name="Player" parent="Playing Field" instance=ExtResource("2_fbvrm")]
 z_index = 1
 position = Vector2(515, 950)
-
-[node name="Enemy" parent="Playing Field" instance=ExtResource("6_h3pof")]
-position = Vector2(527, 130)
 
 [node name="Enemy Spawner" type="Node" parent="Playing Field"]
 script = ExtResource("3_1y1wr")
@@ -134,6 +132,12 @@ offset_left = 1000.0
 offset_top = 970.0
 offset_right = 1064.0
 offset_bottom = 1034.0
+
+[node name="Area2D" parent="." instance=ExtResource("15_h5tek")]
+position = Vector2(-164, 977)
+
+[node name="Phantum" parent="." instance=ExtResource("15_5hykm")]
+position = Vector2(-244, -88)
 
 [connection signal="player_died" from="Playing Field/Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="Playing Field/Enemy Spawner/Timer" to="Playing Field/Enemy Spawner" method="_on_timer_timeout"]

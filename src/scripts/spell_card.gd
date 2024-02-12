@@ -1,19 +1,28 @@
-extends Control
+extends Node2D
 class_name SpellCard
 
-var texture : String
-var projectileDamage: int
-var projectileClass: FriendlyBullet
-var cooldown: float
+@export var iconPath : String = ""
+@export var cooldown: float = 0
 
-func _init(_texture: String, _projectileClass : FriendlyBullet, _name : String, _projectileDamage: int, _cooldown : float):
-	projectileDamage = _projectileDamage
-	projectileClass = _projectileClass
+
+func _construct(_iconPath: String, _cooldown : float):
 	cooldown = _cooldown
-	texture = _texture
+	iconPath = _iconPath
+	return self
+
+func _ready():
+	$Timer.wait_time = cooldown
 	
-func fire(tree : SceneTree):
-	var bulletClass = preload("res://src/scenes/friendly_bullet.tscn")
-	var shootingPattern = preload("res://src/scenes/bullet_spawner.tscn").instantiate()
-	tree.get_first_node_in_group("Player").add_child(shootingPattern)
-	shootingPattern.shoot_simple(1, 1, 0, 0, 2000, bulletClass, Vector2(0, -1), projectileDamage)
+#func _stop_timer():
+	#$Timer.stop()
+
+func fire():
+	$Timer.start()
+	#Currently the code is only made for one child, if more childs were to be added, fire should be called independently for each child, moreover the cooldown property will have to be reworked
+	for pattern in get_children():
+		if not pattern is Timer:
+			pattern.shoot()
+	#var bulletClass = preload("res://src/scenes/friendly_bullet.tscn")
+	#var shootingPattern = preload("res://src/scenes/bullet_spawner.tscn").instantiate()
+	#get_tree().get_first_node_in_group("Player").add_child(shootingPattern)
+	#shootingPattern.shoot_simple(1, 1, 0, 0, 2000, bulletClass, Vector2(0, -1), projectileDamage)

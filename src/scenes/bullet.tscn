@@ -1,8 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://seslplamiuj8"]
+[gd_scene load_steps=5 format=3 uid="uid://seslplamiuj8"]
 
 [ext_resource type="Script" path="res://src/scripts/bullet.gd" id="1_gbarv"]
 [ext_resource type="PackedScene" uid="uid://d0bhm4qxb7fnl" path="res://src/scenes/entity.tscn" id="1_nyl3d"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2v1i5"]
+resource_local_to_scene = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k7e7b"]
+resource_local_to_scene = true
+
 [node name="Bullet" instance=ExtResource("1_nyl3d")]
 z_index = 2
 script = ExtResource("1_gbarv")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_2v1i5")
+
+[node name="Sprite" parent="." index="1"]
+texture = SubResource("CompressedTexture2D_k7e7b")

@@ -5,6 +5,3 @@
 
 [node name="Active Spell Slot" instance=ExtResource("1_p6u4v")]
 script = ExtResource("2_6c07b")
-
-[node name="Spell Timer" type="Timer" parent="." index="1"]
-one_shot = true

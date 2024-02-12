@@ -1,20 +1,18 @@
 extends InventorySlot
 class_name ActiveSpellSlot
 
-signal update_bar(cooldown, id)
+signal update_bar(cooldown, id, isSpellRemoved)
 var indice : int = -1
 
-func updateSpell(new_spellcard) :
+func updateSpell(new_spellcard = false) :
 	super(new_spellcard)
-	if spellcard != null :
-		$"Spell Timer".wait_time = spellcard.cooldown
-		update_bar.emit(spellcard.cooldown, indice)
+	if has_spell :
+		update_bar.emit(new_spellcard.cooldown, indice, false)
 	else :
-		$"Spell Timer".stop()
+		update_bar.emit(1, indice, true)
 
 func activate_spell():
-	spellcard.fire(get_tree())
-	$"Spell Timer".start()
+	get_node("Spellcard").fire()
 
 func _enter_tree():
 	var levelscene = get_tree().current_scene.get_node("Spell Bar")

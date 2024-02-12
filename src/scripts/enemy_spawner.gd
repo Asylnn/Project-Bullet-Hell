@@ -14,7 +14,7 @@ func random(min, max):
 	return min + randf()*delta 
 
 func _on_timer_timeout():
-	var enemyClass = preload("res://src/scenes/enemy.tscn")
+	var enemyClass = preload("res://src/scenes/entities/phantum.tscn")
 	if random(0, 4) >= 3 :
 		var enemy3 = enemyClass.instantiate()
 		var enemy2 = enemyClass.instantiate()

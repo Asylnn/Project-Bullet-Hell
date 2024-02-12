@@ -1,33 +1,35 @@
 extends GridContainer
 
+#spellSlot[i][1] Is the spell
+#spellSlot[i][0] Is the bar
 var spellSlots : Array
+
 #func(spell): return spell is ActiveSpellSlot and spell.spellcard != null
 func _ready():
-	print("b")
-	var TempSpellSlots = get_children().filter(aaa)
-	print(TempSpellSlots)
+	var TempSpellSlots = get_children().filter(func(spell): return spell is ActiveSpellSlot)
 	for i in len(TempSpellSlots) : 
-		print("a")
 		TempSpellSlots[i].indice = i
 		spellSlots.append([get_child(i), TempSpellSlots[i]])
 
-var aaa = func(spell):
-	print(spell is ActiveSpellSlot)
-	return spell is ActiveSpellSlot
+#var aaa = func(spell):
+	#print(spell is ActiveSpellSlot)
+	#return spell is ActiveSpellSlot
 
 func _process(delta):
 	for i in len(spellSlots):
 		var spellSlot = spellSlots[i][1]
-		if spellSlot.spellcard != null :
+		if spellSlot.has_spell:
 			var bar = spellSlots[i][0]
-			var time_left = spellSlot.get_node("Spell Timer").time_left
+			var time_left = spellSlot.get_node("Spellcard/Timer").time_left
 			bar.value = time_left
 			if time_left == 0 && Input.is_action_pressed("shoot"):
 				spellSlot.activate_spell()
 
-func _update_progress_bar(cooldown, id):
-	print(spellSlots)
-	spellSlots[id][0].max_value = cooldown
+func _update_progress_bar(cooldown, id, isSpellRemoved):
+	if isSpellRemoved:
+		spellSlots[id][0].value = 0
+	else :
+		spellSlots[id][0].max_value = cooldown
 
 
 #func shoot():
