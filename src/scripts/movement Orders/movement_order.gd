@@ -24,7 +24,7 @@ func _moveAndRotate(entity : Entity, direction: Vector2, speed: float, delta: fl
 	entity.position += direction*speed*delta
 	if rotate : 
 		if "damage" in entity:
-			print("rotatew")
+			pass
 		entity.rotation = direction.angle() + PI/2
 	
 	if (entity.position - destination).length() <= 2:

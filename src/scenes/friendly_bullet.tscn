@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0mnt"]
 resource_local_to_scene = true
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8cxml"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hxs5s"]
 resource_local_to_scene = true
 
 [node name="Friendly Bullet" groups=["Friendly Bullet"] instance=ExtResource("1_sy3a3")]
@@ -18,5 +18,5 @@ damage = 10
 shape = SubResource("RectangleShape2D_i0mnt")
 
 [node name="Sprite" parent="." index="1"]
-modulate = Color(1, 1, 1, 0.392157)
-texture = SubResource("CompressedTexture2D_8cxml")
+modulate = Color(1, 1, 1, 0.4)
+texture = SubResource("CompressedTexture2D_hxs5s")

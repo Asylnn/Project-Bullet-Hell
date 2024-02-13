@@ -13,10 +13,11 @@ func _ready():
 	var AI = preload("res://src/scenes/bullets/ai.tscn")
 	var SHI = preload("res://src/scenes/bullets/shi.tscn")
 	var STAR = preload("res://src/scenes/bullets/star.tscn")
+	var ARROW = preload("res://src/scenes/bullets/arrow.tscn")
 	var spell_ai = preload("res://src/scenes/bullets/spellcard.tscn").instantiate()._construct("res://Sprites/Friendly Bullet.png", 0.2)#SpellCard.new("res://Sprites/Friendly Bullet.png", 0.2)
 	var spell_shi = preload("res://src/scenes/bullets/spellcard.tscn").instantiate()._construct("res://Sprites/Friendly Bullet 2.png", 0.5)
-	var spell_star = preload("res://src/scenes/bullets/spellcard.tscn").instantiate()._construct("res://Sprites/star.png", 0.1)
-	var spell_homing = preload("res://src/scenes/bullets/spellcard.tscn").instantiate()._construct("res://Sprites/star.png", 0.1)
+	var spell_star = preload("res://src/scenes/bullets/spellcard.tscn").instantiate()._construct("res://Sprites/star.png", 0.01)
+	var spell_homing = preload("res://src/scenes/bullets/spellcard.tscn").instantiate()._construct("res://Sprites/arrow.png", 0.1)
 	var shooting_pattern_ai = preload("res://src/scenes/shooting orders/shoot_simple.tscn").instantiate()._construct(AI, 0, 1, 1, 0, 0, Vector2(0,-1))
 	var shooting_pattern_star = preload("res://src/scenes/shooting orders/shoot_random.tscn").instantiate()._construct(STAR, 0, 30, 4, Vector2(0,-1))
 	var movement_pattern_ai = preload("res://src/scenes/Movement Orders/movement_line.tscn").instantiate()._construct(Vector2(0, -1), 2000, true)
@@ -28,9 +29,10 @@ func _ready():
 	var shooting_pattern_homing = shooting_pattern_ai.duplicate(15)
 	shooting_pattern_ai.damage = 3
 	shooting_pattern_shi.damage = 10
-	shooting_pattern_star.damage = 1
+	shooting_pattern_star.damage = 0.05
 	shooting_pattern_homing.damage = 2
 	shooting_pattern_shi.bullet_scene = SHI
+	shooting_pattern_homing.bullet_scene = ARROW
 	shooting_pattern_ai.get_node("Timer").stop()
 	shooting_pattern_shi.get_node("Timer").stop() #wait we should just put autostart on off right?
 	shooting_pattern_star.get_node("Timer").stop()
@@ -44,7 +46,6 @@ func _ready():
 	spell_homing.add_child(shooting_pattern_homing)
 	_add_item(spell_ai)
 	_add_item(spell_ai.duplicate())
-	_add_item(spell_ai.duplicate())
 	_add_item(spell_shi)
 	_add_item(spell_star)
 	_add_item(spell_star.duplicate())
@@ -52,6 +53,9 @@ func _ready():
 	_add_item(spell_star.duplicate())
 	_add_item(spell_shi.duplicate())
 	_add_item(spell_homing)
+	_add_item(spell_homing.duplicate())
+	_add_item(spell_homing.duplicate())
+	_add_item(spell_homing.duplicate())
 	
 
 func _get_first_free_slot():
