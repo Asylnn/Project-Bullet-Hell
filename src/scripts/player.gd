@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 class_name Player
 
 const SPEED = 300.0
@@ -9,14 +9,9 @@ signal player_died
 
 func _ready():
 	position = Parameters.initialPlayerPos
-	$ShootingTimer.wait_time = SHOOTING_SPEED
-	$ShootingTimer.start()
-	
-	
 	
 func _process(delta):
 	var speedMultiplier = 1
-	var shootingTimer = $ShootingTimer
 	if Input.is_action_pressed("Shift Move "):
 		speedMultiplier *= SHIFT_SPEED_MULTIPLIER
 	if Input.is_action_pressed("Move Down"):
@@ -31,8 +26,10 @@ func _process(delta):
 		#shootingTimer.start()
 		#shoot()
 		
+func _physics_process(delta):
+	move_and_slide()
 
-func _on_area_entered(area):
+func _on_hitbox_area_area_entered(area):
 	if area.is_in_group("Enemy Bullet"):
 		player_died.emit()
 		position = Parameters.initialPlayerPos
