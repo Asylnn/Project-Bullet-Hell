@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://rl00atdr131w"]
 
-[ext_resource type="PackedScene" uid="uid://clr6c85q43x66" path="res://src/scenes/friendly_bullet.tscn" id="1_dn3in"]
+[ext_resource type="PackedScene" uid="uid://clr6c85q43x66" path="res://src/scenes/bullets/friendly_bullet.tscn" id="1_l5pdx"]
 [ext_resource type="Texture2D" uid="uid://b24npyes88jtp" path="res://Sprites/Friendly Bullet 2.png" id="2_jnetw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkmuk"]
 resource_local_to_scene = true
 size = Vector2(41, 57)
 
-[node name="SHI" instance=ExtResource("1_dn3in")]
+[node name="SHI" instance=ExtResource("1_l5pdx")]
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0.5, 1.5)

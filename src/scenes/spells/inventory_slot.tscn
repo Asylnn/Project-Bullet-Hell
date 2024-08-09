@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnelxik8wwmah"]
+
+[ext_resource type="Script" path="res://src/scripts/Spells/inventory_slot.gd" id="1_ahtlh"]
+[ext_resource type="PackedScene" uid="uid://lq4inswvod0c" path="res://src/scenes/spells/spellcard_empty.tscn" id="2_78wwb"]
+
+[node name="Inventory Slot" type="Panel"]
+custom_minimum_size = Vector2(64, 64)
+script = ExtResource("1_ahtlh")
+
+[node name="Empty SpellCard" parent="." instance=ExtResource("2_78wwb")]
+z_index = 8
+mouse_filter = 0
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

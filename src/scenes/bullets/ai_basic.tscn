@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://le7glf520twp"]
+
+[ext_resource type="PackedScene" uid="uid://bnwlmll642w73" path="res://src/scenes/bullets/ai.tscn" id="1_lhruq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_je6ot"]
+resource_local_to_scene = true
+size = Vector2(39, 76)
+
+[node name="AI" instance=ExtResource("1_lhruq")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_je6ot")

@@ -1,48 +1,60 @@
 extends Node2D
 class_name BaseShootingOrder
 @export var bullet_scene: PackedScene
-@export var timeBetweenEachAttacks : float = 1
+@export var time_between_each_attacks : float = 1
 @export var damage : float = -1
-var playing_field : Node2D
+@export var pooling_id: String
+var parent_position : Vector2
+var manager : ShootingManager
+var is_active = true
+var speed : float
+var bullet : Bullet
 
-func _base_construct(_bullet_scene : PackedScene, _timeBetweenEachAttacks : float):
-	bullet_scene = _bullet_scene
-	timeBetweenEachAttacks = _timeBetweenEachAttacks
+func ask_for_bullet_reserve(): #virtual method
+	pass
+	
 
-func get_direction(target):
-	var direction: Vector2 = target
-	if target == Vector2(-1,-1):
-		direction = (playing_field.playerPosition - get_parent().position)
-	return direction
+
+func construct_bullet() -> Bullet:
+	var _bullet = bullet_scene.instantiate()
+	_bullet.damage = damage
+	_bullet.pooling_id = pooling_id
+	var movement_order = get_children().filter(func(child): return child is BaseMovementOrder)[0].duplicate()
+	_bullet.get_node("Movement Manager").add_child(movement_order)
+	return _bullet
 	
 func _ready():
-	playing_field = get_tree().get_first_node_in_group("Field")
-	# We want the pattern to only fire when pressing the button when the damage is different to -1, it's to say it's a player's projectile
-	if damage == -1 : 
-		$Timer.wait_time = timeBetweenEachAttacks
-		$Timer.start()
+	if not get_parent() is Pool :
+		manager = get_parent()
+		speed = get_children().filter(func(child): return child is BaseMovementOrder)[0].speed
+		$Timer.wait_time = time_between_each_attacks
+		if manager.shooter_identity == manager.ShooterIdentityEnum.SPELLCARD :
+			$Timer.stop()	
+		ask_for_bullet_reserve()
 	
-func shoot():
-	pass
+func _process(delta):
+	if not get_parent() is Pool :	
+		if manager.shooter_identity == manager.ShooterIdentityEnum.SPELLCARD :
+			if Input.is_action_pressed("shoot") and manager.armed:
+				_check_timer_before_shooting()
+		elif manager.shooter_identity == manager.ShooterIdentityEnum.ENEMY :
+			_check_timer_before_shooting()
 
-func spawn_bullet(direction: Vector2, rotation: float):
+func _check_timer_before_shooting():
+	if $Timer.is_stopped() :
+		$Timer.start()
+		shoot()
+
+func shoot(): #inherited function
+		pass
+
+func activate_bullet(direction: Vector2, rotation: float):
+	bullet = manager.pool.provide_entity(pooling_id)
+	manager.playing_field.add_child(bullet)
+	bullet.position = manager._get_spawn_position()
 	direction = direction.rotated(rotation)
-	var bullet = bullet_scene.instantiate()
-	if damage != -1:
-		bullet.damage = damage
-		bullet.position = playing_field.playerPosition
-	else :
-		bullet.position = get_parent().position
-	var manager = preload("res://src/scenes/Movement Orders/movement_manager.tscn").instantiate()
-	var movement_order = get_children().filter(func(child): return not child is Timer)[0].duplicate()
-	manager.rotate = true
-	if "direction" in movement_order:
-		movement_order.direction = direction
-	bullet.add_child(manager)
-	bullet.get_node("Movement Manager").add_child(movement_order)
-	movement_order.armed()
+	bullet.find_child("Movement Manager").set_initial_direction(direction)
 	bullet.rotation = direction.angle() + PI/2
-	playing_field.add_child(bullet)
 	
 func _on_shoot_timeout():
 	shoot()

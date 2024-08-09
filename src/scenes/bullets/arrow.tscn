@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://munwi1a6q0ew"]
 
-[ext_resource type="PackedScene" uid="uid://clr6c85q43x66" path="res://src/scenes/friendly_bullet.tscn" id="1_2kqyo"]
+[ext_resource type="PackedScene" uid="uid://clr6c85q43x66" path="res://src/scenes/bullets/friendly_bullet.tscn" id="1_2kqyo"]
 [ext_resource type="Texture2D" uid="uid://brn224q4iuhsh" path="res://Sprites/arrow.png" id="2_dxv32"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0x5oq"]
 resource_local_to_scene = true
 size = Vector2(23, 59)
 
-[node name="Friendly Bullet" instance=ExtResource("1_2kqyo")]
+[node name="Arrow" instance=ExtResource("1_2kqyo")]
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(-1.5, -0.5)

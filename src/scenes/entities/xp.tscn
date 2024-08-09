@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://jetxr5evmss0"]
+
+[ext_resource type="Script" path="res://src/scripts/entities/xp.gd" id="1_qainc"]
+[ext_resource type="SpriteFrames" uid="uid://bp3w0wj2cu2e5" path="res://Sprites/XP anim/new_sprite_frames.tres" id="1_v4i13"]
+
+[node name="XP" type="Area2D"]
+script = ExtResource("1_qainc")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(131, 99)
+sprite_frames = ExtResource("1_v4i13")
+speed_scale = 10.0
