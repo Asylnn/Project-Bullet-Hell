@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwnjofdaho3ye"]
+
+[ext_resource type="Script" path="res://src/scripts/UI/pause_menu.gd" id="1_yme0w"]
+[ext_resource type="Texture2D" uid="uid://cmoh7stixjva3" path="res://Sprites/blue background.png" id="2_5y8o1"]
+[ext_resource type="LabelSettings" uid="uid://c482pv5eagk0v" path="res://src/other/font_pause_menu.tres" id="3_iabp0"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nuxby"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ehjsp"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_y1pa6"]
+
+[node name="Pause Menu" type="Control"]
+visible = false
+z_index = 4
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_yme0w")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1919.0
+offset_bottom = 1078.0
+texture = ExtResource("2_5y8o1")
+
+[node name="Main Menu Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 572.0
+offset_right = 522.0
+offset_bottom = 614.0
+action_mode = 0
+icon = SubResource("PlaceholderTexture2D_nuxby")
+flat = true
+
+[node name="Main Menu" type="Label" parent="Main Menu Button"]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 328.0
+offset_bottom = 45.0
+text = "Return to main menu
+"
+label_settings = ExtResource("3_iabp0")
+
+[node name="Return Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 236.0
+offset_right = 503.0
+offset_bottom = 287.0
+action_mode = 0
+icon = SubResource("PlaceholderTexture2D_ehjsp")
+flat = true
+
+[node name="Return" type="Label" parent="Return Button"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 329.0
+offset_bottom = 44.0
+text = "Return"
+label_settings = ExtResource("3_iabp0")
+
+[node name="Restart Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 402.0
+offset_right = 489.0
+offset_bottom = 450.0
+mouse_filter = 1
+action_mode = 0
+icon = SubResource("PlaceholderTexture2D_y1pa6")
+flat = true
+
+[node name="Restart" type="Label" parent="Restart Button"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 3.0
+offset_right = 126.0
+offset_bottom = 48.0
+text = "Restart"
+label_settings = ExtResource("3_iabp0")
+
+[connection signal="mouse_entered" from="Main Menu Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Main Menu Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Main Menu Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="Return Button" to="." method="_on_return_buttons_mouse_entered"]
+[connection signal="mouse_exited" from="Return Button" to="." method="_on_return_buttons_mouse_exited"]
+[connection signal="pressed" from="Return Button" to="." method="_on_return_buttons_pressed"]
+[connection signal="mouse_entered" from="Restart Button" to="." method="_on_restart_button_mouse_entered"]
+[connection signal="mouse_exited" from="Restart Button" to="." method="_on_restart_button_mouse_exited"]
+[connection signal="pressed" from="Restart Button" to="." method="_on_restart_button_pressed"]

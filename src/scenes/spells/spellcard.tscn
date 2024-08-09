@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://yhibsg7wchgc"]
+
+[ext_resource type="Script" path="res://src/scripts/Spells/spell_card.gd" id="1_1kc4q"]
+[ext_resource type="Script" path="res://src/scripts/shooting orders/shooting_manager.gd" id="2_mboq8"]
+
+[node name="Spellcard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_1kc4q")
+
+[node name="ShootingManager" type="Node2D" parent="."]
+script = ExtResource("2_mboq8")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0

@@ -3,3 +3,8 @@ Fix bug where when pausing and leaving with escape, you can't go back to the gam
 Make a better movement manager where rotate and base speed are passed down to movement orders without spaghetti code
 There is a duplicate property : cooldown and time between each attacks for spellcard, must be cohesive
 also fix shitty spell_bar code
+
+
+remove process in ShootingManager
+make so item in inventory don't pool projectiles
+Make new node with only construct bullet property

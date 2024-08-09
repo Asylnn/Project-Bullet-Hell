@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://da0r78ku1axgl"]
+
+[ext_resource type="Script" path="res://src/scripts/entities/player.gd" id="1_8d8j3"]
+[ext_resource type="Texture2D" uid="uid://0trehqblh1u2" path="res://Sprites/ship2.png" id="2_2d2aa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hb6y0"]
+radius = 7.61577
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdfgx"]
+size = Vector2(53, 51)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+position = Vector2(193, 142)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_8d8j3")
+
+[node name="Ship Sprite" type="Sprite2D" parent="."]
+position = Vector2(3, 6)
+texture = ExtResource("2_2d2aa")
+
+[node name="Hitbox Area" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hitbox Area"]
+shape = SubResource("CircleShape2D_hb6y0")
+
+[node name="Border Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 8.5)
+shape = SubResource("RectangleShape2D_mdfgx")
+
+[node name="Imunity Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Flicker Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="area_entered" from="Hitbox Area" to="." method="_on_hitbox_area_area_entered"]
+[connection signal="timeout" from="Imunity Timer" to="." method="_on_imunity_timer_timeout"]
+[connection signal="timeout" from="Flicker Timer" to="." method="_on_flicker_timer_timeout"]

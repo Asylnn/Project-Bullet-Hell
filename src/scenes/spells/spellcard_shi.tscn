@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7y814env56j5"]
+
+[ext_resource type="PackedScene" uid="uid://yhibsg7wchgc" path="res://src/scenes/spells/spellcard.tscn" id="1_68m2j"]
+[ext_resource type="PackedScene" uid="uid://cihiwggdwky7v" path="res://src/scenes/Movement Orders/movement_line.tscn" id="3_gx4fo"]
+[ext_resource type="PackedScene" uid="uid://1rh462k56wrf" path="res://src/scenes/shooting orders/shoot_simple.tscn" id="3_ohubv"]
+[ext_resource type="PackedScene" uid="uid://rl00atdr131w" path="res://src/scenes/bullets/shi.tscn" id="4_qyrb3"]
+[ext_resource type="Texture2D" uid="uid://b24npyes88jtp" path="res://Sprites/Friendly Bullet 2.png" id="5_q1r41"]
+
+[node name="SHI" instance=ExtResource("1_68m2j")]
+
+[node name="Shoot Simple" parent="ShootingManager" index="0" instance=ExtResource("3_ohubv")]
+target = Vector2(0, -1)
+bullet_scene = ExtResource("4_qyrb3")
+time_between_each_attacks = 0.5
+damage = 10.0
+pooling_id = "spellcard shi"
+
+[node name="Movement Line" parent="ShootingManager/Shoot Simple" index="1" instance=ExtResource("3_gx4fo")]
+speed = 2000.0
+
+[node name="Icon" parent="." index="1"]
+texture = ExtResource("5_q1r41")

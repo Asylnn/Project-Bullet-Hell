@@ -1,30 +1,28 @@
 extends Node2D
 class_name BaseMovementOrder
 
-var rotate : bool
-@export var template : bool = true
-var destination : Vector2 = Vector2(-1000, -1000)
-
-func _base_construct(_template):
-	template = _template
+@export var rotate : bool
+@export var destination : Vector2 = Vector2(-1000, -1000)
+var manager : MovementManager
 
 func _ready():
-	if not template or self.name == "Movement Retreat" :
-		var movement_manager = get_parent()
-		rotate = movement_manager.rotate
+	if self.name == "Movement Retreat" :
+		var manager = get_parent()
+		rotate = manager.rotate
 		if "speed" in self && self.speed == -1: 
-			self.speed = movement_manager.global_speed
+			self.speed = manager.global_speed
 			
-func armed():
-	var movement_manager = get_parent()
-	rotate = movement_manager.rotate
+#func armed():
+	#var movement_manager = get_parent()
+	#rotate = movement_manager.rotate
 	
 func _moveAndRotate(entity : Entity, direction: Vector2, speed: float, delta: float):
+	#if entity is EnemyBullet:
+	#	print(direction)
 	direction = direction.normalized()
+	
 	entity.position += direction*speed*delta
 	if rotate : 
-		if "damage" in entity:
-			pass
 		entity.rotation = direction.angle() + PI/2
 	
 	if (entity.position - destination).length() <= 2:

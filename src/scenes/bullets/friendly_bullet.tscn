@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://clr6c85q43x66"]
+
+[ext_resource type="PackedScene" uid="uid://seslplamiuj8" path="res://src/scenes/bullets/bullet.tscn" id="1_wxb4o"]
+[ext_resource type="Script" path="res://src/scripts/bullets/friendly_bullet.gd" id="2_4r4kh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0mnt"]
+resource_local_to_scene = true
+
+[node name="Friendly Bullet" groups=["Friendly Bullet"] instance=ExtResource("1_wxb4o")]
+z_index = 0
+script = ExtResource("2_4r4kh")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_i0mnt")
+
+[node name="Sprite" parent="." index="1"]
+modulate = Color(1, 1, 1, 0.4)

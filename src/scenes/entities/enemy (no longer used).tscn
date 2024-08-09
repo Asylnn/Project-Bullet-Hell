@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://csxpur110l1c1"]
+
+[ext_resource type="Script" path="res://src/scripts/entities/enemy.gd" id="1_chnqd"]
+[ext_resource type="Texture2D" uid="uid://dtqdis8jxwfv1" path="res://Sprites/Phantom.png" id="2_nrisi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s1hb0"]
+radius = 29.0
+height = 80.0
+
+[node name="Enemy" type="Area2D" groups=["Enemy"]]
+z_index = 1
+position = Vector2(215, 172)
+script = ExtResource("1_chnqd")
+
+[node name="Phantom" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+texture = ExtResource("2_nrisi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 3)
+shape = SubResource("CapsuleShape2D_s1hb0")
+
+[node name="Shoot" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Shoot" to="." method="_on_shoot_timeout"]

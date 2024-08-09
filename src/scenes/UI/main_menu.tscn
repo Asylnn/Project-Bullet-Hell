@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://gf8irffdglmu"]
+
+[ext_resource type="Script" path="res://src/scripts/UI/main_menu.gd" id="1_sfw7r"]
+
+[node name="MainMenu" type="Node2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_sfw7r")
+
+[node name="Game Title" type="Label" parent="."]
+offset_left = 845.0
+offset_top = 384.0
+offset_right = 1086.0
+offset_bottom = 438.0
+theme_type_variation = &"HeaderLarge"
+text = "Project Bullet Hell
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start Button" type="Button" parent="."]
+offset_left = 940.0
+offset_top = 442.0
+offset_right = 986.0
+offset_bottom = 473.0
+text = "Start"
+
+[connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]

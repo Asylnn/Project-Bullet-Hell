@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://efnp5y8a2wyo"]
+
+[ext_resource type="PackedScene" uid="uid://yhibsg7wchgc" path="res://src/scenes/spells/spellcard.tscn" id="1_cg88t"]
+[ext_resource type="PackedScene" uid="uid://1rh462k56wrf" path="res://src/scenes/shooting orders/shoot_simple.tscn" id="2_lic2e"]
+[ext_resource type="PackedScene" uid="uid://munwi1a6q0ew" path="res://src/scenes/bullets/arrow.tscn" id="3_vtfow"]
+[ext_resource type="PackedScene" uid="uid://b0uolx0klh4q8" path="res://src/scenes/Movement Orders/movement_homing.tscn" id="4_fecgh"]
+[ext_resource type="Texture2D" uid="uid://brn224q4iuhsh" path="res://Sprites/arrow.png" id="5_iokoc"]
+
+[node name="ARROW" instance=ExtResource("1_cg88t")]
+
+[node name="Shoot Simple" parent="ShootingManager" index="0" instance=ExtResource("2_lic2e")]
+target = Vector2(0, -1)
+bullet_scene = ExtResource("3_vtfow")
+time_between_each_attacks = 0.1
+damage = 2.0
+pooling_id = "spellcard arrow"
+
+[node name="Movement Homing" parent="ShootingManager/Shoot Simple" index="1" instance=ExtResource("4_fecgh")]
+speed = 1000.0
+
+[node name="Icon" parent="." index="1"]
+texture = ExtResource("5_iokoc")

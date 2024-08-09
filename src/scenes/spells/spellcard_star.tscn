@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm15wepcgty8v"]
+
+[ext_resource type="PackedScene" uid="uid://yhibsg7wchgc" path="res://src/scenes/spells/spellcard.tscn" id="1_fdg4u"]
+[ext_resource type="PackedScene" uid="uid://ctqecfpkeo8ou" path="res://src/scenes/shooting orders/shoot_random.tscn" id="2_d36dn"]
+[ext_resource type="PackedScene" uid="uid://cihiwggdwky7v" path="res://src/scenes/Movement Orders/movement_line.tscn" id="3_6l8xp"]
+[ext_resource type="PackedScene" uid="uid://cdk335ecwsc48" path="res://src/scenes/bullets/star.tscn" id="3_yfmoq"]
+[ext_resource type="Texture2D" uid="uid://tpf8r0qkncsy" path="res://Sprites/star.png" id="4_n14f7"]
+
+[node name="STAR" instance=ExtResource("1_fdg4u")]
+
+[node name="Shoot Random" parent="ShootingManager" index="0" instance=ExtResource("2_d36dn")]
+angle = 30.0
+nbOfShots = 2
+target = Vector2(0, -1)
+target_type = 0
+bullet_scene = ExtResource("3_yfmoq")
+time_between_each_attacks = 0.2
+damage = 2.0
+pooling_id = "spellcard star"
+
+[node name="Movement Line" parent="ShootingManager/Shoot Random" index="1" instance=ExtResource("3_6l8xp")]
+speed = 2000.0
+
+[node name="Icon" parent="." index="1"]
+texture = ExtResource("4_n14f7")
