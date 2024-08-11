@@ -23,6 +23,9 @@ func _input(event):
 		$"Inventory".visible = !$"Inventory".visible
 	if event.is_action_pressed("Show FPS") :
 		$"FPS Counter".visible = !$"FPS Counter".visible 
+		$"Node Count".visible = !$"Node Count".visible 
+		$"Entity Count".visible = !$"Entity Count".visible 
+		$"Changelog".visible = !$"Changelog".visible 
 
 func _on_enemy_died(score):
 	totalScore += score

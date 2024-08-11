@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name BaseMovementOrder
 
 @export var rotate : bool

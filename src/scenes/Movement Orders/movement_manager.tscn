@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://src/scripts/movement Orders/movement_manager.gd" id="1_lq5w1"]
 
-[node name="Movement Manager" type="Node2D"]
+[node name="Movement Manager" type="Node"]
 script = ExtResource("1_lq5w1")

@@ -13,10 +13,10 @@ target = Vector2(0, -1)
 bullet_scene = ExtResource("4_qyrb3")
 time_between_each_attacks = 0.5
 damage = 10.0
-pooling_id = "spellcard shi"
+pooling_id = "shi"
 
 [node name="Movement Line" parent="ShootingManager/Shoot Simple" index="1" instance=ExtResource("3_gx4fo")]
-speed = 2000.0
+speed = 1000.0
 
 [node name="Icon" parent="." index="1"]
 texture = ExtResource("5_q1r41")

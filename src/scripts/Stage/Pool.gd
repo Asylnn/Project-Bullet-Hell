@@ -3,68 +3,38 @@ class_name Pool
 var pooling_id_dict = {}
 const NUMBER_OF_INSTANTIATION_PER_FRAME = 1
 
-func request_entity_pooling(shooting_order: BaseShootingOrder, id: String, amount: int):
-	if pooling_id_dict.has(id):
-		pooling_id_dict[id].requested_amount += amount
-	else:
-		var node = shooting_order.duplicate()
-		pooling_id_dict[id] = PoolCensus.new(amount)
-		node.name = id
-		node.find_child("Timer").queue_free()
-		add_child(node)
+func request_new_entity_pooling(constructor: BulletConstructor, id: String, amount: int):
+	pooling_id_dict[id] = PoolCensus.new(amount)
+	constructor.name = id
+	add_child(constructor)
 
-func free_pool(id: String, number: int):
-	pooling_id_dict[id].requested_amount -= number
+func request_entity_pooling(id: String, amount: int) -> void:
+	pooling_id_dict[id].requested_amount += amount
 
-func put_to_pool(id: String, entity: Entity):
+func free_pool(id: String, number: int) -> void: pooling_id_dict[id].requested_amount -= number
+func report_unfield(id) -> void: pooling_id_dict[id].number_of_entities_fielded -= 1
+
+func put_to_pool(id: String, entity: Entity) -> void:
 	get_tree().get_first_node_in_group("Field").remove_child(entity)
 	pooling_id_dict[id].stocked_entities.append(entity)
 	pooling_id_dict[id].number_of_entities_fielded -= 1
 	
-func report_unfield(id):
-	pooling_id_dict[id].number_of_entities_fielded -= 1
+
 	
 
 func has_free_space_for_pooling(id) -> bool:
-	#print_tree()
-	#print(id)
-	#print(find_child(id))
-	#print(get_node(id))
-	#for child in get_children() :
-		#print(child.name == id)
-	if pooling_id_dict[id].theorical_available_entities <= pooling_id_dict[id].stocked_entities.size()-2:
-		#print("tae", pooling_id_dict[id].theorical_available_entities)
-		#print("stock", pooling_id_dict[id].stock)
+
+	if pooling_id_dict[id].theorical_available_entities  <= pooling_id_dict[id].stocked_entities.size()-2:
 		return false
-	#print("aaaaaaa")
 	return true
 
-func _process(delta):
-	pass
-	#print(delta)
-	##for i in NUMBER_OF_INSTANTIATION_PER_FRAME:
-	#for node in get_children():
-		#if node.name == "phantum bullet":
-			##print(node.name, pooling_id_dict[node.name].requested_amount)
-			##print(pooling_id_dict[node.name].number_of_entities_fielded)
-			##print(pooling_id_dict[node.name] .theorical_available_entities)
-			##print(node.get_child_count()-1)
-			#if pooling_id_dict[node.name].theorical_available_entities >= node.get_child_count()+1:
-				#print("NEW OBJECT!!!")
-				#node.construct_bullet()
-
 func has_entity(id) -> bool:
-	var node = get_node(id)
-	if node :
-		if pooling_id_dict[id].stocked_entities.size() > 0 :
-			return true
-		else :
-			return false
-	else :
-		return false
+	if get_node(id) :
+		return true
+	return false
 	
 	
-func provide_entity(id) :
+func provide_entity(id) -> Bullet:
 	var node = get_node(id)
 	if pooling_id_dict[id].stocked_entities.size() > 0:
 		pooling_id_dict[id].number_of_entities_fielded += 1
@@ -83,6 +53,8 @@ func _on_timer_timeout():
 				#print(pooling_id_dict[node.name] .theorical_available_entities)
 				#print(pooling_id_dict[node.name] .stock)
 				pass
+			#print(node)
+			#print(node.name)
 			if pooling_id_dict[node.name].theorical_available_entities >= pooling_id_dict[node.name].stocked_entities.size():
 				pooling_id_dict[node.name].stocked_entities.append(node.construct_bullet())
 

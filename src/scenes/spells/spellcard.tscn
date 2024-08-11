@@ -9,7 +9,7 @@ anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_1kc4q")
 
-[node name="ShootingManager" type="Node2D" parent="."]
+[node name="ShootingManager" type="Node" parent="."]
 script = ExtResource("2_mboq8")
 
 [node name="Icon" type="TextureRect" parent="."]

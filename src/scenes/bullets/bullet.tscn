@@ -5,10 +5,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2v1i5"]
 resource_local_to_scene = true
+size = Vector2(5, 36)
 
 [node name="Bullet" instance=ExtResource("1_2tmmq")]
 z_index = 2
 script = ExtResource("2_nd62u")
+type = 0
+damage = 0.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_2v1i5")

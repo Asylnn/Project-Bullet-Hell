@@ -9,7 +9,6 @@ extends BaseShootingOrder
 
 func ask_for_bullet_reserve():
 	var number_of_bullet_asked = 1500/speed*nbOfShots*nbOfWaves*(1/time_between_each_attacks)
-	print("AAAAAAAAAAAAAAAAAAAAAAAAAA")
 	manager.get_pooling_order(self, pooling_id, number_of_bullet_asked)
 
 func shoot():
@@ -22,6 +21,3 @@ func shoot():
 			if nbOfShots != 1:
 				rotation = PI/180*angle*(float(i)/(nbOfShots - 1) - 0.5)
 			activate_bullet(direction, rotation)
-
-
-

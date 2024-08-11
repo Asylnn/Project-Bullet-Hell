@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://src/scripts/movement Orders/movement_order_retreat.gd" id="1_lyi42"]
 
-[node name="Movement Retreat" type="Node2D"]
+[node name="Movement Retreat" type="Node"]
 script = ExtResource("1_lyi42")

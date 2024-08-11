@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/scripts/shooting orders/shoot_random.gd" id="1_q8fkp"]
 
-[node name="Shoot Random" type="Node2D"]
+[node name="Shoot Random" type="Node"]
 script = ExtResource("1_q8fkp")
 target_type = 1
 

@@ -4,6 +4,9 @@ class_name Bullet
 @export var type : BulletType
 @export var damage : float #Is never set in editor but in shooting pattern
 
+func _on_master_death(score): ask_for_being_pooled()
+	
+
 enum BulletType {
 	NEUTRAL, #unused
 	FRIENDLY,

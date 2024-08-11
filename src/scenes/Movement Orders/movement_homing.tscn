@@ -2,6 +2,6 @@
 
 [ext_resource type="Script" path="res://src/scripts/movement Orders/movement_homing.gd" id="1_l8h5h"]
 
-[node name="Movement Homing" type="Node2D"]
+[node name="Movement Homing" type="Node"]
 script = ExtResource("1_l8h5h")
 rotate = true

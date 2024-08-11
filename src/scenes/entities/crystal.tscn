@@ -1,0 +1,164 @@
+[gd_scene load_steps=19 format=3 uid="uid://b0so4ewb7ka3s"]
+
+[ext_resource type="PackedScene" uid="uid://bxe0yahmynl2p" path="res://src/scenes/entities/enemy.tscn" id="1_w3dbu"]
+[ext_resource type="Texture2D" uid="uid://cltac1ix8js3f" path="res://Sprites/blue crystal 2/blue crystal 1.png" id="2_g5jdn"]
+[ext_resource type="Texture2D" uid="uid://dsvoqvk16sldx" path="res://Sprites/blue crystal 2/blue crystal 2.png" id="3_rbs0s"]
+[ext_resource type="Texture2D" uid="uid://7736lvylcmyj" path="res://Sprites/blue crystal 2/blue crystal 3.png" id="4_cihdv"]
+[ext_resource type="Texture2D" uid="uid://b6rc3wrnkd2y0" path="res://Sprites/blue crystal 2/blue crystal 4.png" id="5_ppd87"]
+[ext_resource type="Texture2D" uid="uid://dhsy4bsqmcoao" path="res://Sprites/blue crystal 2/blue crystal 5.png" id="6_sfn1u"]
+[ext_resource type="Texture2D" uid="uid://b1d0uo0x7d8al" path="res://Sprites/blue crystal 2/blue crystal 6.png" id="7_3uxjg"]
+[ext_resource type="Texture2D" uid="uid://dqruguu753nf7" path="res://Sprites/blue crystal 2/blue crystal 7.png" id="8_75u7w"]
+[ext_resource type="Texture2D" uid="uid://c18ohw0woabdt" path="res://Sprites/blue crystal 2/blue crystal 8.png" id="9_n0tgw"]
+[ext_resource type="PackedScene" uid="uid://di45m6g1xhobg" path="res://src/scenes/Movement Orders/movement_to_point.tscn" id="10_1sg8q"]
+[ext_resource type="Script" path="res://src/scripts/shooting orders/shooting_manager.gd" id="11_s6prn"]
+[ext_resource type="PackedScene" uid="uid://ctqecfpkeo8ou" path="res://src/scenes/shooting orders/shoot_random.tscn" id="12_km448"]
+[ext_resource type="PackedScene" uid="uid://bys482utkjwwv" path="res://src/scenes/bullets/crystal_proj.tscn" id="13_uqurs"]
+[ext_resource type="PackedScene" uid="uid://cihiwggdwky7v" path="res://src/scenes/Movement Orders/movement_line.tscn" id="14_0ewes"]
+[ext_resource type="PackedScene" uid="uid://1rh462k56wrf" path="res://src/scenes/shooting orders/shoot_simple.tscn" id="15_kp5fu"]
+[ext_resource type="PackedScene" uid="uid://bwhcsy2a8mlqw" path="res://src/scenes/bullets/magic_circle.tscn" id="16_sflyn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ih0re"]
+resource_local_to_scene = true
+size = Vector2(129, 144)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4nfrc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g5jdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rbs0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cihdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ppd87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sfn1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3uxjg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_75u7w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_n0tgw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Crystal" instance=ExtResource("1_w3dbu")]
+position = Vector2(-1, 10)
+health = 600
+score = 300
+is_boss = true
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(3.5, -11)
+shape = SubResource("RectangleShape2D_ih0re")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_4nfrc")
+frame_progress = 0.658752
+
+[node name="Movement Manager" parent="." index="3"]
+rotate = false
+retreat = false
+
+[node name="Movement To Point" parent="Movement Manager" index="0" instance=ExtResource("10_1sg8q")]
+target = Vector2(550, 150)
+speed = 100.0
+
+[node name="ShootingManager" type="Node" parent="." index="4"]
+script = ExtResource("11_s6prn")
+shooter_identity = 1
+shooting_timer = 2.5
+
+[node name="Shoot Random" parent="ShootingManager" index="0" instance=ExtResource("12_km448")]
+angle = 40.0
+nbOfShots = 4
+bullet_scene = ExtResource("13_uqurs")
+time_between_each_attacks = 0.5
+pooling_id = "crystal projectile"
+
+[node name="Movement Line" parent="ShootingManager/Shoot Random" index="1" instance=ExtResource("14_0ewes")]
+speed = 300.0
+
+[node name="Shoot Circle" parent="ShootingManager" index="1" instance=ExtResource("15_kp5fu")]
+bullet_scene = ExtResource("16_sflyn")
+time_between_each_attacks = 1000.0
+pooling_id = "circle"
+projectile_die_with_master = true
+
+[node name="Movement To Point" parent="ShootingManager/Shoot Circle" index="1" instance=ExtResource("10_1sg8q")]
+target = Vector2(650, 250)
+speed = 100.0
+destination = Vector2(0, 0)
+
+[node name="Shooting Manager" type="Node" parent="ShootingManager/Shoot Circle" index="2"]
+process_mode = 4
+script = ExtResource("11_s6prn")
+shooter_identity = 1
+
+[node name="Shoot Simple" parent="ShootingManager/Shoot Circle/Shooting Manager" index="0" instance=ExtResource("15_kp5fu")]
+target_type = 1
+bullet_scene = ExtResource("13_uqurs")
+pooling_id = "crystal projectile circle"
+
+[node name="Movement Line" parent="ShootingManager/Shoot Circle/Shooting Manager/Shoot Simple" index="1" instance=ExtResource("14_0ewes")]
+speed = 400.0
+
+[node name="Shoot Circle2" parent="ShootingManager" index="2" instance=ExtResource("15_kp5fu")]
+bullet_scene = ExtResource("16_sflyn")
+time_between_each_attacks = 1000.0
+pooling_id = "circle2"
+projectile_die_with_master = true
+
+[node name="Movement To Point" parent="ShootingManager/Shoot Circle2" index="1" instance=ExtResource("10_1sg8q")]
+target = Vector2(550, 300)
+speed = 100.0
+destination = Vector2(0, 0)
+
+[node name="Shooting Manager" type="Node" parent="ShootingManager/Shoot Circle2" index="2"]
+process_mode = 4
+script = ExtResource("11_s6prn")
+shooter_identity = 1
+
+[node name="Shoot Simple" parent="ShootingManager/Shoot Circle2/Shooting Manager" index="0" instance=ExtResource("15_kp5fu")]
+target_type = 1
+bullet_scene = ExtResource("13_uqurs")
+pooling_id = "crystal projectile circle"
+
+[node name="Movement Line" parent="ShootingManager/Shoot Circle2/Shooting Manager/Shoot Simple" index="1" instance=ExtResource("14_0ewes")]
+speed = 400.0
+
+[node name="Shoot Circle3" parent="ShootingManager" index="3" instance=ExtResource("15_kp5fu")]
+bullet_scene = ExtResource("16_sflyn")
+time_between_each_attacks = 1000.0
+pooling_id = "circle3"
+projectile_die_with_master = true
+
+[node name="Movement To Point" parent="ShootingManager/Shoot Circle3" index="1" instance=ExtResource("10_1sg8q")]
+target = Vector2(450, 250)
+speed = 100.0
+destination = Vector2(0, 0)
+
+[node name="Shooting Manager" type="Node" parent="ShootingManager/Shoot Circle3" index="2"]
+process_mode = 4
+script = ExtResource("11_s6prn")
+shooter_identity = 1
+
+[node name="Shoot Simple" parent="ShootingManager/Shoot Circle3/Shooting Manager" index="0" instance=ExtResource("15_kp5fu")]
+target_type = 1
+bullet_scene = ExtResource("13_uqurs")
+pooling_id = "crystal projectile circle"
+
+[node name="Movement Line" parent="ShootingManager/Shoot Circle3/Shooting Manager/Shoot Simple" index="1" instance=ExtResource("14_0ewes")]
+speed = 400.0

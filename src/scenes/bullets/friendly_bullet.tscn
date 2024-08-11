@@ -6,9 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0mnt"]
 resource_local_to_scene = true
 
-[node name="Friendly Bullet" groups=["Friendly Bullet"] instance=ExtResource("1_wxb4o")]
+[node name="Friendly Bullet" instance=ExtResource("1_wxb4o")]
 z_index = 0
+collision_mask = 0
+monitoring = false
 script = ExtResource("2_4r4kh")
+type = 1
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_i0mnt")

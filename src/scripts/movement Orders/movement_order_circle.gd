@@ -22,7 +22,7 @@ func move(entity: Entity, delta:float):
 	angle += theta
 	entity.position = calculate_position(angle, r, center)
 	if rotate : 
-		rotation = Vector2(cos(angle), -sin(angle)).angle() + PI/2
+		entity.rotation = Vector2(cos(angle), -sin(angle)).angle() + PI/2
 	if totalRotation <= abs(angle) - startingAngle :
 		entity.position = calculate_position(startingAngle + totalRotation, r, center)
 		queue_free()

@@ -5,7 +5,6 @@ extends BaseMovementOrder
 
 func _ready():
 	super()
-	destination = target
 
 func move(entity: Entity, delta: float):
 	var direction = target - entity.position

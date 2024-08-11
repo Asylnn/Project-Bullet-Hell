@@ -13,10 +13,11 @@ target = Vector2(0, -1)
 bullet_scene = ExtResource("3_vtfow")
 time_between_each_attacks = 0.1
 damage = 2.0
-pooling_id = "spellcard arrow"
+pooling_id = "arrow"
 
 [node name="Movement Homing" parent="ShootingManager/Shoot Simple" index="1" instance=ExtResource("4_fecgh")]
 speed = 1000.0
+mass = 300.0
 
 [node name="Icon" parent="." index="1"]
 texture = ExtResource("5_iokoc")

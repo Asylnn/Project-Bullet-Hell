@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxe0yahmynl2p"]
+
+[ext_resource type="PackedScene" uid="uid://d0bhm4qxb7fnl" path="res://src/scenes/entities/entity.tscn" id="1_7w5mh"]
+[ext_resource type="Script" path="res://src/scripts/entities/enemy.gd" id="2_3onto"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70l2l"]
+resource_local_to_scene = true
+size = Vector2(38, 58)
+
+[node name="Enemy" groups=["Enemy"] instance=ExtResource("1_7w5mh")]
+collision_layer = 0
+monitorable = false
+script = ExtResource("2_3onto")
+health = 40
+score = 100
+is_boss = false
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_70l2l")

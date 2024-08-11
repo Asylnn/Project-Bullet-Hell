@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://r74mmj7guv6w" path="res://src/scenes/Movement Orders/movement_circle.tscn" id="5_pei63"]
 [ext_resource type="Script" path="res://src/scripts/shooting orders/shooting_manager.gd" id="6_pmtp6"]
 [ext_resource type="PackedScene" uid="uid://1rh462k56wrf" path="res://src/scenes/shooting orders/shoot_simple.tscn" id="7_53qru"]
-[ext_resource type="PackedScene" uid="uid://d2tjo7ap2q23f" path="res://src/scenes/bullets/enemy_bullet.tscn" id="8_l51f4"]
+[ext_resource type="PackedScene" uid="uid://c2070tl7lmtn3" path="res://src/scenes/bullets/red_bullet.tscn" id="8_nu3yx"]
 [ext_resource type="PackedScene" uid="uid://cihiwggdwky7v" path="res://src/scenes/Movement Orders/movement_line.tscn" id="9_j1ynu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsdid"]
@@ -15,7 +15,12 @@ resource_local_to_scene = true
 size = Vector2(54, 66)
 
 [node name="Phantum" groups=["Enemy"] instance=ExtResource("1_wk5ch")]
+collision_layer = 0
+monitorable = false
 script = ExtResource("2_3dh42")
+health = 40
+score = 100
+is_boss = false
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_nsdid")
@@ -29,12 +34,13 @@ rotate = false
 [node name="Movement To Point" parent="Movement Manager" index="0" instance=ExtResource("4_x1u52")]
 target = Vector2(525, 400)
 speed = 200.0
+destination = Vector2(525, 400)
 
 [node name="Movement Circle" parent="Movement Manager" index="1" instance=ExtResource("5_pei63")]
 center = Vector2(525, 550)
 speed = 400.0
 
-[node name="ShootingManager" type="Node2D" parent="." index="3"]
+[node name="ShootingManager" type="Node" parent="." index="3"]
 script = ExtResource("6_pmtp6")
 shooter_identity = 1
 
@@ -44,11 +50,9 @@ nbOfShots = 4
 angle = 30.0
 dt = 1.0
 target_type = 1
-bullet_scene = ExtResource("8_l51f4")
+bullet_scene = ExtResource("8_nu3yx")
 pooling_id = "phantum bullet"
 
 [node name="Movement Line" parent="ShootingManager/Shoot Simple" index="0" instance=ExtResource("9_j1ynu")]
 direction = Vector2(0, 0)
 speed = 500.0
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -8,3 +8,4 @@ also fix shitty spell_bar code
 remove process in ShootingManager
 make so item in inventory don't pool projectiles
 Make new node with only construct bullet property
+make so shooting manager and shooting order doesn't use _process
