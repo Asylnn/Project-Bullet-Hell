@@ -13,5 +13,5 @@ size = Vector2(39, 76)
 position = Vector2(0.5, -10)
 shape = SubResource("RectangleShape2D_o1uqk")
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_mqgbe")

@@ -14,8 +14,6 @@ script = ExtResource("1_ucf13")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y6day")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-
 [node name="Movement Manager" parent="." instance=ExtResource("1_hx50s")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

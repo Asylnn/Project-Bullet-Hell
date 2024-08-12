@@ -13,6 +13,7 @@ monitorable = false
 script = ExtResource("2_3onto")
 health = 40
 score = 100
+mana_dropped = 0
 is_boss = false
 
 [node name="CollisionShape2D" parent="." index="0"]

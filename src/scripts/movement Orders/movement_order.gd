@@ -3,15 +3,18 @@ class_name BaseMovementOrder
 
 @export var rotate : bool
 @export var destination : Vector2 = Vector2(-1000, -1000)
-var manager : MovementManager
+#@onready var manager : MovementManager = get_parent()
+
+## Avoid using _ready() here, not that it can be a child of a ShootingOrder for example
 
 func _ready():
+	pass
+
+func start_moving():
+	if "speed" in self && self.speed == -1: 
+		self.speed = get_parent().global_speed
 	if self.name == "Movement Retreat" :
-		var manager = get_parent()
-		rotate = manager.rotate
-		if "speed" in self && self.speed == -1: 
-			self.speed = manager.global_speed
-			
+		rotate = get_parent().rotate
 #func armed():
 	#var movement_manager = get_parent()
 	#rotate = movement_manager.rotate

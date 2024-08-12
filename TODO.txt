@@ -1,11 +1,11 @@
-Faire en sorte que bullet hérite de entity, convertisse 
+DONE Faire en sorte que bullet hérite de entity, convertisse 
 Fix bug where when pausing and leaving with escape, you can't go back to the game
-Make a better movement manager where rotate and base speed are passed down to movement orders without spaghetti code
-There is a duplicate property : cooldown and time between each attacks for spellcard, must be cohesive
-also fix shitty spell_bar code
+SOMEWHAT ? Make a better movement manager where rotate and base speed are passed down to movement orders without spaghetti code
+DONE There is a duplicate property : cooldown and time between each attacks for spellcard, must be cohesive
+DONE also fix shitty spell_bar code
 
-
-remove process in ShootingManager
 make so item in inventory don't pool projectiles
-Make new node with only construct bullet property
+DONE Make new node with only construct bullet property
 make so shooting manager and shooting order doesn't use _process
+Make so the pool and bullet constructor supports multiple movement orders
+DONE Remove Sprite as an inherited child

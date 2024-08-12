@@ -27,12 +27,8 @@ func _input(event):
 		$"Entity Count".visible = !$"Entity Count".visible 
 		$"Changelog".visible = !$"Changelog".visible 
 
-func _on_enemy_died(score):
-	totalScore += score
-	$"LineEdit".text = str(totalScore)
 
-
-func _on_player_player_died():
+func _on_player_player_hit():
 	lives -= 1
 	if(lives <= -1) :
 		$"Death Menu".visible = true

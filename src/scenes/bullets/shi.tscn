@@ -5,15 +5,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nkmuk"]
 resource_local_to_scene = true
-size = Vector2(41, 57)
+size = Vector2(41, 71)
 
 [node name="SHI" instance=ExtResource("1_l5pdx")]
 
 [node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0.5, 1.5)
+position = Vector2(0.5, -5.5)
 shape = SubResource("RectangleShape2D_nkmuk")
 
-[node name="Sprite" parent="." index="1"]
-position = Vector2(0, -0.5)
-scale = Vector2(1, 1.01562)
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_jnetw")

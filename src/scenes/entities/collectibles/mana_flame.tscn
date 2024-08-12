@@ -1,0 +1,75 @@
+[gd_scene load_steps=15 format=3 uid="uid://52u1d4pcfp0t"]
+
+[ext_resource type="PackedScene" uid="uid://ko2e2sgrpwt5" path="res://src/scenes/entities/collectibles/collectible.tscn" id="1_flg1f"]
+[ext_resource type="Script" path="res://src/scripts/entities/collectibles/mana_flame.gd" id="2_5eood"]
+[ext_resource type="Texture2D" uid="uid://rs6c8el3uvlw" path="res://Sprites/flame/flame0001.png" id="2_wej0q"]
+[ext_resource type="Texture2D" uid="uid://c67c2u2x1cjoc" path="res://Sprites/flame/flame0002.png" id="3_6kbuh"]
+[ext_resource type="Texture2D" uid="uid://dnl3kdgfhmfud" path="res://Sprites/flame/flame0003.png" id="4_br8f1"]
+[ext_resource type="Texture2D" uid="uid://cvba1dm5wwgd0" path="res://Sprites/flame/flame0004.png" id="5_1ko6q"]
+[ext_resource type="Texture2D" uid="uid://bmv3txfrc1vsy" path="res://Sprites/flame/flame0005.png" id="6_l3rta"]
+[ext_resource type="Texture2D" uid="uid://ldt2vpw1hcn8" path="res://Sprites/flame/flame0006.png" id="7_kf3d2"]
+[ext_resource type="Texture2D" uid="uid://dda1omlss56eq" path="res://Sprites/flame/flame0007.png" id="8_4q4b1"]
+[ext_resource type="Texture2D" uid="uid://c3wa534j25h8l" path="res://Sprites/flame/flame0008.png" id="9_ynji7"]
+[ext_resource type="Texture2D" uid="uid://bgbod4w4thyhe" path="res://Sprites/flame/flame0009.png" id="10_phm4e"]
+[ext_resource type="PackedScene" uid="uid://cihiwggdwky7v" path="res://src/scenes/Movement Orders/movement_line.tscn" id="11_2w8so"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jax2k"]
+radius = 19.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ihbi7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wej0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6kbuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_br8f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1ko6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l3rta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kf3d2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4q4b1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ynji7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_phm4e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="Mana Flame" instance=ExtResource("1_flg1f")]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("2_5eood")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_jax2k")
+
+[node name="Sprite" type="Sprite2D" parent="." index="1"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(-2, 0)
+sprite_frames = SubResource("SpriteFrames_ihbi7")
+frame_progress = 0.232907
+
+[node name="Movement Manager" parent="." index="3"]
+rotate = false
+retreat = false
+
+[node name="Movement Line" parent="Movement Manager" index="0" instance=ExtResource("11_2w8so")]
+direction = Vector2(0, 1)
+speed = 100.0

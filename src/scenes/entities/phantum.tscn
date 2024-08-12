@@ -20,12 +20,13 @@ monitorable = false
 script = ExtResource("2_3dh42")
 health = 40
 score = 100
+mana_dropped = 2
 is_boss = false
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_nsdid")
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_e7due")
 
 [node name="Movement Manager" parent="." index="2"]
@@ -47,7 +48,7 @@ shooter_identity = 1
 [node name="Shoot Simple" parent="ShootingManager" index="0" instance=ExtResource("7_53qru")]
 nbOfWaves = 2
 nbOfShots = 4
-angle = 30.0
+angle_expression = "30"
 dt = 1.0
 target_type = 1
 bullet_scene = ExtResource("8_nu3yx")

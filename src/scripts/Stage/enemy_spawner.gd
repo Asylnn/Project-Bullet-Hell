@@ -31,6 +31,7 @@ func _spawn_crystal():
 
 
 func _on_timer_timeout():
+	pass
 	if count == 8:
 		$Timer.stop()
 		_spawn_crystal()

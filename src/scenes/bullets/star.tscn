@@ -7,12 +7,10 @@
 radius = 29.2746
 
 [node name="Star" instance=ExtResource("1_6wsej")]
-collision_mask = 0
 input_pickable = false
-monitoring = false
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_iwd0a")
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_ljjnd")

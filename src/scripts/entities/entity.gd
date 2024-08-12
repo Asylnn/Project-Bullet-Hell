@@ -1,12 +1,9 @@
-extends Area2D
-class_name Entity
+class_name Entity extends Area2D
 
 var pooling_id : String = "base"
 var is_pooled : bool = true
 
 func ask_for_being_pooled():
-	print(self)
-	print(self.name)
 	if get_tree(): #????????????????????????
 		var pool = get_tree().get_first_node_in_group("Pool")
 		if pool.has_free_space_for_pooling(pooling_id) :
@@ -16,8 +13,11 @@ func ask_for_being_pooled():
 			queue_free()
 
 func _ready():
-	if not self is Bullet:
-			$"Movement Manager".paused = false
+	#if not self is Bullet:
+			#$"Movement Manager".paused = false
+	var anim = find_child("AnimatedSprite2D")
+	if anim: 
+		$"AnimatedSprite2D".play("default")
 
 func _process(delta): #Process Killzone
 	var screensize = get_viewport_rect().size

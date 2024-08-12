@@ -2,16 +2,17 @@
 class_name Player extends CharacterBody2D
 ## This class is used for controlling the player controlled ship
 ## 
-## It is only used for controlling the ship and it's boundary hitbox.
-## The firing logic is handled by [ActiveSpellSlot]. [Bullet] [CharacterBody2D].
+## It is only used for controlling the ship and it's various hitboxs.
+## The firing logic is handled by [ActiveSpellSlot].
 
 
 
-const SPEED = 300.0 						## Speed of the player
-const SHIFT_SPEED_MULTIPLIER = 0.5			## Slowing coefficient of pressing shift to slow down the player
-var is_flickering : bool = false			## Is the player ship flickering ? Used in the getting touched animation
+const SPEED : float = 300.0 										## Speed of the player
+const SHIFT_SPEED_MULTIPLIER : float = 0.5							## Slowing coefficient of pressing shift to slow down the player
+var is_flickering : bool = false							## Is the player ship flickering ? Used in the getting touched animation
 
-signal player_died							## Signal for signaling if the player was touch (not dead misnamed signal), used for showing the death screen
+signal recieved_collectible(collectible : Collectible)		## Signal for signaling if the player recieved a collectible to the inventory
+signal player_hit											## Signal for signaling if the player was hit, used for removing a life from the UI
 
 func _ready():	position = Parameters.initialPlayerPos
 	
@@ -29,10 +30,15 @@ func _physics_process(delta): move_and_slide()
 func _on_hitbox_area_area_entered(area):
 	if $"Imunity Timer".time_left == 0:
 		$"Imunity Timer".start(); $"Flicker Timer".start()
-		player_died.emit()
+		player_hit.emit()
 		is_flickering = true
 		_flicker()
 
+func _on_collect_area_area_entered(area):
+	recieved_collectible.emit(area)
+	area.queue_free()
+	
+	
 func _on_imunity_timer_timeout():
 	$"Flicker Timer".stop()
 	is_flickering = false
@@ -47,3 +53,6 @@ func _on_flicker_timer_timeout():
 func _flicker() -> void:
 	if is_flickering :	$"Ship Sprite".modulate.a = 0.5
 	else : 				$"Ship Sprite".modulate.a = 1
+
+
+

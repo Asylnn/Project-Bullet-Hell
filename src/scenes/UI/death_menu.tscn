@@ -62,7 +62,7 @@ offset_left = 598.0
 offset_top = 102.0
 offset_right = 1343.0
 offset_bottom = 147.0
-text = "You are dead!!! RETARD, GET FUCKING GOOD FFS"
+text = "You are dead!!! You're so bad💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀"
 label_settings = ExtResource("3_tqumn")
 
 [connection signal="mouse_entered" from="Restart Button" to="." method="_on_restart_button_mouse_entered"]

@@ -7,16 +7,26 @@ var paused = false
 @export var rotate = true
 @export var retreat = true
 
+func _ready():
+	for child : BaseMovementOrder in get_children():
+		child.start_moving()
+
 func set_initial_direction(direction: Vector2):
-	#On a besoin de faire en sorte que cette fonction modifile les propriétés de base de l'entité (sa rotation ...)
-	if get_child(0) is MovementLine: get_child(0).direction = direction
-		
 	
+	#On a besoin de faire en sorte que cette fonction modifile les propriétés de base de l'entité (sa rotation ...)
+	for child in get_children():
+		if child is MovementLine: get_child(0).direction = direction
+
+func set_speed(speed: float):
+	for child : BaseMovementOrder in get_children():
+		child.speed = speed
 
 func _process(delta):
-	if(not get_children()) : #quite ressource heavy
+	if(get_child_count() == 0) : #quite ressource heavy ? (was get_children() before)
 		if retreat :
-			add_child(preload("res://src/scenes/Movement Orders/movement_retreat.tscn").instantiate())
+			var retreat_order = preload("res://src/scenes/Movement Orders/movement_retreat.tscn").instantiate()
+			retreat_order.speed = global_speed
+			add_child(retreat_order)
 		else : 
 			var immobile_order = preload("res://src/scenes/Movement Orders/movement_to_point.tscn").instantiate()
 			immobile_order.speed = 0

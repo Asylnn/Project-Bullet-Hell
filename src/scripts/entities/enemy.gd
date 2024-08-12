@@ -1,5 +1,4 @@
-extends Entity
-class_name Enemy
+class_name Enemy extends Entity
 
 signal enemy_died(score)
 
@@ -7,39 +6,34 @@ signal enemy_died(score)
 #@export var speed = 100
 @export var health = 40
 @export var score = 100
+#@export var expression : Expression
+@export var mana_dropped = 0 ## Amount of mana flamed spawned for the player to collect
 ## Is this enemy a boss ? If true, the boss bar will be showned
 @export var is_boss = false
-#@export var movementOrders : Array[MovementOrder] = []
-#func _ready():
-	#var ShootTimer = $Shoot
-	#ShootTimer.wait_time = shootingSpeed
-	#ShootTimer.start()
 
 func _ready():
-	var anim = find_child("AnimatedSprite2D")
-	if anim: 
-		$"AnimatedSprite2D".play("default")
-
-func _enter_tree():
-	var levelscene = get_tree().current_scene
-	enemy_died.connect(levelscene._on_enemy_died)
+	var ui = get_tree().get_first_node_in_group("UI")
+	enemy_died.connect(ui._on_enemy_died)
 	if is_boss :
 		var boss_bar = get_tree().get_first_node_in_group("Boss Bar")
 		boss_bar.boss_spawned(health)
 		enemy_died.connect(boss_bar.boss_died)
-#func _shoot():
-	#var bulletClass = preload("res://src/scenes/enemy_bullet.tscn")
-	#var shootingPattern = preload("res://src/scenes/bullet_spawner.tscn").instantiate()
-	#add_child(shootingPattern)
-	#shootingPattern.shoot_simple(2, 4, 30, 0.5, 500, bulletClass)
-#
-#func _on_shoot_timeout():
-	#_shoot()
+	super()
 	
 func _on_area_entered(area):
 	health -= area.damage
 	area.queue_free()
-	get_tree().get_first_node_in_group("Boss Bar").update_bar(health)
+	if is_boss :
+		get_tree().get_first_node_in_group("Boss Bar").update_bar(health)
 	if health <= 0:
+		health = NAN
 		enemy_died.emit(score)
+		var mana_flame = preload("res://src/scenes/entities/collectibles/mana_flame.tscn")
+		var playing_field = get_tree().get_first_node_in_group("Field")
+		for i in mana_dropped :
+			var mana_flame_scene = mana_flame.instantiate()
+			var random_vect = Vector2(Utils.random(-50,50), Utils.random(-50,50))
+			if is_boss : random_vect *= 2
+			mana_flame_scene.position = position + random_vect
+			playing_field.add_child(mana_flame_scene)
 		self.queue_free()

@@ -11,8 +11,7 @@ var indice : int = -1
 	#else :
 		#update_bar.emit(1, indice, true)
 
-#func activate_spell():
-	#get_node("Spellcard").fire()
+
 
 func _enter_tree():
 	var levelscene = get_tree().current_scene.get_node("Spell Bar")

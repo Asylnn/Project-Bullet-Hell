@@ -1,8 +1,14 @@
 extends GridContainer
 
-const INVENTORY_SIZE = 12
+const INVENTORY_SIZE = 12							## Inventory size
+var mana : int = 0									## Amount of mana stored
+
+signal update_mana(mana: int)						## Used when the amount of mana stored changed. used for communicating with UI
 
 func _ready():
+	var ui = get_tree().get_first_node_in_group("UI")
+	update_mana.connect(ui._update_mana)
+	get_tree().get_first_node_in_group("Player").recieved_collectible.connect(_recieved_collectible)
 	for i in range(INVENTORY_SIZE):
 		var panel : InventorySlot = preload("res://src/scenes/spells/inventory_slot.tscn").instantiate()
 		panel.name = "Inventory Slot " + str(i)
@@ -67,6 +73,13 @@ func _ready():
 	_add_item(preload("res://src/scenes/spells/spellcard_ultimate_star.tscn").instantiate())
 	#print_tree()
 
+
+func _recieved_collectible(collectible : Collectible):
+	if collectible is ManaFlame:
+		mana += collectible.mana
+		update_mana.emit(mana)
+	
+	
 func _get_first_free_slot():
 	for inventory_slot in get_children():
 		if inventory_slot._is_slot_empty():

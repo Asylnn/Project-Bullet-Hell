@@ -5,14 +5,15 @@
 [ext_resource type="Script" path="res://src/scenes/bullets/Sprite.gd" id="3_uh5dd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ymicd"]
+radius = 27.5
 
 [node name="Magic Circle" instance=ExtResource("1_jwjea")]
-position = Vector2(103, 104)
+position = Vector2(0, 0)
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_ymicd")
 disabled = true
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_fcbef")
 script = ExtResource("3_uh5dd")

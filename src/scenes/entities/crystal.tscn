@@ -57,6 +57,7 @@ animations = [{
 position = Vector2(-1, 10)
 health = 600
 score = 300
+mana_dropped = 40
 is_boss = true
 
 [node name="CollisionShape2D" parent="." index="0"]
@@ -66,9 +67,10 @@ shape = SubResource("RectangleShape2D_ih0re")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_4nfrc")
-frame_progress = 0.658752
+frame = 2
+frame_progress = 0.425673
 
-[node name="Movement Manager" parent="." index="3"]
+[node name="Movement Manager" parent="." index="2"]
 rotate = false
 retreat = false
 
@@ -76,7 +78,7 @@ retreat = false
 target = Vector2(550, 150)
 speed = 100.0
 
-[node name="ShootingManager" type="Node" parent="." index="4"]
+[node name="ShootingManager" type="Node" parent="." index="3"]
 script = ExtResource("11_s6prn")
 shooter_identity = 1
 shooting_timer = 2.5
@@ -102,17 +104,17 @@ target = Vector2(650, 250)
 speed = 100.0
 destination = Vector2(0, 0)
 
-[node name="Shooting Manager" type="Node" parent="ShootingManager/Shoot Circle" index="2"]
+[node name="ShootingManager" type="Node" parent="ShootingManager/Shoot Circle" index="2"]
 process_mode = 4
 script = ExtResource("11_s6prn")
 shooter_identity = 1
 
-[node name="Shoot Simple" parent="ShootingManager/Shoot Circle/Shooting Manager" index="0" instance=ExtResource("15_kp5fu")]
+[node name="Shoot Simple" parent="ShootingManager/Shoot Circle/ShootingManager" index="0" instance=ExtResource("15_kp5fu")]
 target_type = 1
 bullet_scene = ExtResource("13_uqurs")
 pooling_id = "crystal projectile circle"
 
-[node name="Movement Line" parent="ShootingManager/Shoot Circle/Shooting Manager/Shoot Simple" index="1" instance=ExtResource("14_0ewes")]
+[node name="Movement Line" parent="ShootingManager/Shoot Circle/ShootingManager/Shoot Simple" index="1" instance=ExtResource("14_0ewes")]
 speed = 400.0
 
 [node name="Shoot Circle2" parent="ShootingManager" index="2" instance=ExtResource("15_kp5fu")]
@@ -126,17 +128,17 @@ target = Vector2(550, 300)
 speed = 100.0
 destination = Vector2(0, 0)
 
-[node name="Shooting Manager" type="Node" parent="ShootingManager/Shoot Circle2" index="2"]
+[node name="ShootingManager" type="Node" parent="ShootingManager/Shoot Circle2" index="2"]
 process_mode = 4
 script = ExtResource("11_s6prn")
 shooter_identity = 1
 
-[node name="Shoot Simple" parent="ShootingManager/Shoot Circle2/Shooting Manager" index="0" instance=ExtResource("15_kp5fu")]
+[node name="Shoot Simple" parent="ShootingManager/Shoot Circle2/ShootingManager" index="0" instance=ExtResource("15_kp5fu")]
 target_type = 1
 bullet_scene = ExtResource("13_uqurs")
 pooling_id = "crystal projectile circle"
 
-[node name="Movement Line" parent="ShootingManager/Shoot Circle2/Shooting Manager/Shoot Simple" index="1" instance=ExtResource("14_0ewes")]
+[node name="Movement Line" parent="ShootingManager/Shoot Circle2/ShootingManager/Shoot Simple" index="1" instance=ExtResource("14_0ewes")]
 speed = 400.0
 
 [node name="Shoot Circle3" parent="ShootingManager" index="3" instance=ExtResource("15_kp5fu")]
@@ -150,15 +152,15 @@ target = Vector2(450, 250)
 speed = 100.0
 destination = Vector2(0, 0)
 
-[node name="Shooting Manager" type="Node" parent="ShootingManager/Shoot Circle3" index="2"]
+[node name="ShootingManager" type="Node" parent="ShootingManager/Shoot Circle3" index="2"]
 process_mode = 4
 script = ExtResource("11_s6prn")
 shooter_identity = 1
 
-[node name="Shoot Simple" parent="ShootingManager/Shoot Circle3/Shooting Manager" index="0" instance=ExtResource("15_kp5fu")]
+[node name="Shoot Simple" parent="ShootingManager/Shoot Circle3/ShootingManager" index="0" instance=ExtResource("15_kp5fu")]
 target_type = 1
 bullet_scene = ExtResource("13_uqurs")
 pooling_id = "crystal projectile circle"
 
-[node name="Movement Line" parent="ShootingManager/Shoot Circle3/Shooting Manager/Shoot Simple" index="1" instance=ExtResource("14_0ewes")]
+[node name="Movement Line" parent="ShootingManager/Shoot Circle3/ShootingManager/Shoot Simple" index="1" instance=ExtResource("14_0ewes")]
 speed = 400.0

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ko2e2sgrpwt5"]
+
+[ext_resource type="PackedScene" uid="uid://d0bhm4qxb7fnl" path="res://src/scenes/entities/entity.tscn" id="1_m2c4p"]
+[ext_resource type="Script" path="res://src/scripts/entities/collectibles/collectible.gd" id="2_c2k44"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8giv"]
+resource_local_to_scene = true
+size = Vector2(38, 58)
+
+[node name="Collectible" instance=ExtResource("1_m2c4p")]
+collision_layer = 0
+collision_mask = 8
+monitoring = false
+script = ExtResource("2_c2k44")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_f8giv")

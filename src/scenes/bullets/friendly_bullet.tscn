@@ -15,6 +15,3 @@ type = 1
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_i0mnt")
-
-[node name="Sprite" parent="." index="1"]
-modulate = Color(1, 1, 1, 0.4)

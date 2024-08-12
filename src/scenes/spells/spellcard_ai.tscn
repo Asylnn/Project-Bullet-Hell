@@ -12,6 +12,7 @@
 target = Vector2(0, -1)
 bullet_scene = ExtResource("3_3dabl")
 time_between_each_attacks = 0.2
+damage_expression = "10*wave"
 damage = 3.0
 pooling_id = "ai"
 
