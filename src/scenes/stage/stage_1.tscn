@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://yxwv0kccm3pr" path="res://src/scenes/stage/test_scene.tscn" id="15_h5tek"]
 [ext_resource type="Script" path="res://src/scripts/UI/Node Count.gd" id="15_ixmfg"]
 [ext_resource type="Script" path="res://src/scripts/UI/FPS Counter.gd" id="16_isc8r"]
-[ext_resource type="Script" path="res://src/scripts/Stage/Pool.gd" id="18_vgd7u"]
+[ext_resource type="Script" path="res://src/scripts/Stage/pool.gd" id="19_k02wo"]
 [ext_resource type="LabelSettings" uid="uid://bx4beocv5cqnq" path="res://src/other/font UI/font_ui.tres" id="19_kxt6m"]
 [ext_resource type="Script" path="res://src/scripts/UI/ui.gd" id="19_okfya"]
 [ext_resource type="Script" path="res://src/scripts/utils/testing.gd" id="22_ggu3u"]
@@ -260,7 +260,7 @@ autostart = true
 
 [node name="Pool" type="Node2D" parent="." groups=["Pool"]]
 position = Vector2(100, 100)
-script = ExtResource("18_vgd7u")
+script = ExtResource("19_k02wo")
 
 [node name="Changelog" type="Label" parent="."]
 z_index = 4

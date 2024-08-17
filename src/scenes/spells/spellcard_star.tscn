@@ -17,6 +17,7 @@ bullet_scene = ExtResource("3_yfmoq")
 time_between_each_attacks = 0.2
 damage = 2.0
 pooling_id = "star"
+speed_expression = "2000"
 
 [node name="Movement Line" parent="ShootingManager/Shoot Random" index="1" instance=ExtResource("3_6l8xp")]
 speed = 2000.0

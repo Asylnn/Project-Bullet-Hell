@@ -1,9 +1,8 @@
-extends Resource
-class_name PoolCensus 
+class_name PoolCensus extends Resource
 
 var requested_amount: int
 var number_of_entities_fielded: int = 0
-var stock : int = 0
+var constructor : BulletConstructor
 var stocked_entities: Array[Entity] = []
 var theorical_available_entities :
 	get:
