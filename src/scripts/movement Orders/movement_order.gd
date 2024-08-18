@@ -3,7 +3,9 @@ class_name BaseMovementOrder
 
 @export var rotate : bool
 @export var destination : Vector2 = Vector2(-1000, -1000)
-#@onready var manager : MovementManager = get_parent()
+var manager : MovementManager
+
+signal order_reached_destination
 
 ## Avoid using _ready() here, not that it can be a child of a ShootingOrder for example
 
@@ -11,6 +13,8 @@ func _ready():
 	pass
 
 func start_moving():
+	manager = get_parent()
+	order_reached_destination.connect(manager.new_order)
 	if "speed" in self && self.speed == -1: 
 		self.speed = get_parent().global_speed
 	if self.name == "Movement Retreat" :
@@ -30,6 +34,7 @@ func _moveAndRotate(entity : Entity, direction: Vector2, speed: float, delta: fl
 	
 	if (entity.position - destination).length() <= 2:
 		entity.position = destination
+		order_reached_destination.emit()
 		queue_free()
 
 

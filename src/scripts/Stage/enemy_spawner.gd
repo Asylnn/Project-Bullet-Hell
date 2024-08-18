@@ -32,6 +32,8 @@ func _spawn_crystal():
 
 func _on_timer_timeout():
 	pass
+	
+	
 	if count == 8:
 		$Timer.stop()
 		_spawn_crystal()
@@ -41,5 +43,9 @@ func _on_timer_timeout():
 			_spawn_phantum()
 			_spawn_phantum()
 		count += 1
-	
+		
+		
+	#if count == 0:	
+		#_spawn_phantum()
+		#count += 1	
 	

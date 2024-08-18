@@ -4,3 +4,7 @@ Fixed pool no longer working
 Added Spellcard description card
 Added mana bar
 Added bomb
+Better MovementManager code
+Added new shooting parameter allowing parallel projectiles
+
+TODO : Make it so you can have multiple movement order, add movement line as base order

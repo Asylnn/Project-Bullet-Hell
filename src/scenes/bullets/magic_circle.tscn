@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d2tjo7ap2q23f" path="res://src/scenes/bullets/enemy_bullet.tscn" id="1_jwjea"]
 [ext_resource type="Texture2D" uid="uid://dc7fi0aktknth" path="res://Sprites/magic circle.png" id="2_fcbef"]
-[ext_resource type="Script" path="res://src/scenes/bullets/Sprite.gd" id="3_uh5dd"]
+[ext_resource type="Script" path="res://src/scripts/bullets/Sprite.gd" id="3_uh5dd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ymicd"]
 radius = 27.5

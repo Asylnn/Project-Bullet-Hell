@@ -27,7 +27,7 @@ func _on_area_entered(area):
 	if is_boss :
 		get_tree().get_first_node_in_group("Boss Bar").update_bar(health)
 	if health <= 0:
-		health = NAN
+		health = NAN # In case there is another projectile at the same frame, this will prevent the following code to execute
 		enemy_died.emit(score)
 		var mana_flame = preload("res://src/scenes/entities/collectibles/mana_flame.tscn")
 		var playing_field = get_tree().get_first_node_in_group("Field")

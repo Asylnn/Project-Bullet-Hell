@@ -57,6 +57,7 @@ label_settings = ExtResource("2_qxkp4")
 layout_mode = 2
 
 [node name="Mana1" type="TextureProgressBar" parent="ManaBar"]
+layout_mode = 0
 offset_left = -176.0
 offset_top = -4.0
 offset_right = 271.0
@@ -84,6 +85,7 @@ texture_over = ExtResource("3_4nx0n")
 texture_progress = ExtResource("3_4qssv")
 
 [node name="Mana4" type="TextureProgressBar" parent="ManaBar"]
+layout_mode = 0
 offset_left = 346.0
 offset_top = -4.0
 offset_right = 538.0

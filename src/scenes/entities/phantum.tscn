@@ -41,13 +41,16 @@ destination = Vector2(525, 400)
 [node name="Movement Circle" parent="Movement Manager" index="1" instance=ExtResource("5_pei63")]
 center = Vector2(525, 550)
 speed = 400.0
+angle = null
+totalRotation = null
+rotate = null
+destination = null
 
 [node name="ShootingManager" type="Node" parent="." index="3"]
 script = ExtResource("6_pmtp6")
 shooter_identity = 1
 
 [node name="Shoot Simple" parent="ShootingManager" index="0" instance=ExtResource("7_53qru")]
-nbOfWaves = 2
 nbOfShots = 4
 angle_expression = "30"
 dt = 1.0

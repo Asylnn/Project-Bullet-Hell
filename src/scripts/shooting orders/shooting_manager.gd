@@ -49,17 +49,15 @@ func get_pooling_order(shooter: BaseShootingOrder, id : String, number: int):
 		requested_pooling_amount[id] += number
 	else :
 		requested_pooling_amount[id] = number
-	var pool2 = get_tree().get_first_node_in_group("Pool")
-	#?????????????????????????????????????????????????
-	if pool2.has_entity(id):
-		pool2.request_entity_pooling(id, number)
+	if Pool.has_entity(id):
+		Pool.request_entity_pooling(id, number)
 	else: 
-		pool2.request_new_entity_pooling(shooter.provide_constructor(), id, number)
+		Pool.request_new_entity_pooling(shooter.provide_constructor(), id, number)
 	
 func get_direction(target, target_type) -> Vector2:
 	var direction : Vector2
 	if target_type == TargetTypeEnum.POINT :
-		direction = target
+		direction = target - get_parent().position
 	elif target_type == TargetTypeEnum.PLAYER :
 		direction = (playing_field.playerPosition - get_parent().position)
 	return direction

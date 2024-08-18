@@ -4,7 +4,7 @@ class_name BaseShootingOrder extends Node
 @export var time_between_each_attacks : float = 1
 @export var damage_expression : String = "-1"
 @export var angle_shift_expression : String  = "0"
-
+@export var bullet_group : BulletGroup = BulletGroup.new() 
 ## Does this order need to provide the movement order to the pool 
 #@export var provide_movement_order : bool = true
 var angle_shift : float :
@@ -14,7 +14,8 @@ var angle_shift : float :
 
 var wave : int = 1
 var shot : int = 1
-var salvo : int = 0
+var salvo : int = 1
+var index : int = 1
 var expr = Expression.new()
 
 @export var damage : float = -1 
@@ -61,6 +62,7 @@ func provide_constructor() -> BulletConstructor:
 	
 func _ready():
 	#pooling_id += str(get_children().filter(func(child): return child is BaseMovementOrder)[0].duplicate().speed)
+	bullet_group.resource_for_expression = self
 	$Timer.wait_time = time_between_each_attacks
 	if manager.shooter_identity == manager.ShooterIdentityEnum.SPELLCARD :
 		$Timer.stop()	
@@ -82,24 +84,37 @@ func shoot(): #inherited function
 		pass
 
 func activate_bullet(direction: Vector2, rotation: float):
-	bullet = manager.pool.provide_entity(pooling_id)
-	
-	bullet.position = manager._get_spawn_position()
-	bullet.damage = damage
-	#bullet.speed += speed
-	#if damage_expression != "-1" :
-		#print("damage expression", damage_expression)
-		#print("damage" , damage)
-		#print("exprimental damage", expiremental_damage)
-	if projectile_die_with_master :
-		manager.get_parent().enemy_died.connect(bullet._on_master_death)
-	direction = direction.rotated(rotation)
-	var bullet_manager = bullet.find_child("Movement Manager")
-	bullet_manager.set_initial_direction(direction)
-	if speed != -1 :
-		bullet_manager.set_speed(speed)
-	bullet.rotation = direction.angle() + PI/2
-	manager.playing_field.add_child(bullet)
+	for i in bullet_group.nb_of_bullets :
+		index = i
+		var bullet_direction = direction.rotated(rotation)
+		var parallel : Vector2 = bullet_direction.rotated(PI/2).normalized()*bullet_group.space_between_each_bullet
+		print("rotation")
+		print("parallel", parallel)
+		print("space", bullet_group.space_between_each_bullet)
+		print("direction", direction)
+		print("direction rotated", direction.rotated(PI/2))
+		print("direction normalized", direction.rotated(PI/2).normalized())
+		var bullet_position = manager._get_spawn_position()
+		bullet_position += -0.5*(bullet_group.nb_of_bullets - 1)*parallel + parallel*index
+		bullet = manager.pool.provide_entity(pooling_id)
+		
+		bullet.position = bullet_position
+		bullet.damage = damage
+		#bullet.speed += speed
+		#if damage_expression != "-1" :
+			#print("damage expression", damage_expression)
+			#print("damage" , damage)
+			#print("exprimental damage", expiremental_damage)
+		if projectile_die_with_master :
+			manager.get_parent().enemy_died.connect(bullet._on_master_death)
+		
+		var bullet_manager = bullet.find_child("Movement Manager")
+		bullet_manager.set_initial_direction(bullet_direction)
+		print("speed", speed)
+		if speed != -1 :
+			bullet_manager.set_speed(speed)
+		bullet.rotation = bullet_direction.angle() + PI/2 
+		manager.playing_field.add_child(bullet)
 		
 	#
 #func _on_shoot_timeout():

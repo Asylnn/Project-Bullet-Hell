@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://be6jl7hkhk83f"]
+[gd_scene load_steps=31 format=3 uid="uid://be6jl7hkhk83f"]
 
 [ext_resource type="Script" path="res://src/scripts/Stage/stage_1.gd" id="1_4gyp0"]
 [ext_resource type="PackedScene" uid="uid://da0r78ku1axgl" path="res://src/scenes/entities/player.tscn" id="2_fbvrm"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://jetxr5evmss0" path="res://src/scenes/entities/xp.tscn" id="10_atx4p"]
 [ext_resource type="PackedScene" uid="uid://bmifckslyml5a" path="res://src/scenes/UI/death_menu.tscn" id="10_io8fh"]
 [ext_resource type="PackedScene" uid="uid://dmlw1y0ketccv" path="res://src/scenes/entities/test_enemy.tscn" id="11_qtxky"]
+[ext_resource type="PackedScene" uid="uid://cfhdunxh50073" path="res://src/scenes/entities/enemy/aki_copy.tscn" id="12_h886f"]
 [ext_resource type="PackedScene" uid="uid://dnelxik8wwmah" path="res://src/scenes/spells/inventory_slot.tscn" id="12_sboef"]
 [ext_resource type="PackedScene" uid="uid://yxwv0kccm3pr" path="res://src/scenes/stage/test_scene.tscn" id="15_h5tek"]
 [ext_resource type="Script" path="res://src/scripts/UI/Node Count.gd" id="15_ixmfg"]
@@ -170,6 +171,10 @@ process_mode = 4
 visible = false
 position = Vector2(526, 153)
 collision_mask = 1
+
+[node name="Aki Copy" parent="Playing Field" instance=ExtResource("12_h886f")]
+position = Vector2(556, 218)
+scale = Vector2(1.08179, 0.959423)
 
 [node name="Interface" type="Sprite2D" parent="."]
 z_index = 2

@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfhdunxh50073"]
+
+[ext_resource type="PackedScene" uid="uid://bxe0yahmynl2p" path="res://src/scenes/entities/enemy.tscn" id="1_wyouk"]
+[ext_resource type="Texture2D" uid="uid://kt2cfuh4720o" path="res://icon.svg" id="2_7t5m8"]
+[ext_resource type="Script" path="res://src/scripts/shooting orders/shooting_manager.gd" id="3_iwpr3"]
+[ext_resource type="PackedScene" uid="uid://1rh462k56wrf" path="res://src/scenes/shooting orders/shoot_simple.tscn" id="4_aegvr"]
+[ext_resource type="PackedScene" uid="uid://c2070tl7lmtn3" path="res://src/scenes/bullets/red_bullet.tscn" id="5_odb8t"]
+[ext_resource type="Script" path="res://src/scripts/bullets/bullet_group.gd" id="6_0i2ug"]
+[ext_resource type="PackedScene" uid="uid://cihiwggdwky7v" path="res://src/scenes/Movement Orders/movement_line.tscn" id="7_wjxrc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlfbk"]
+resource_local_to_scene = true
+size = Vector2(117, 119)
+
+[sub_resource type="Resource" id="Resource_vgk5y"]
+script = ExtResource("6_0i2ug")
+nb_of_bullets = 2
+space_between_each_bullet_expression = "30*(wave -1)"
+
+[node name="Aki Copy" instance=ExtResource("1_wyouk")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-2.5, 1.5)
+shape = SubResource("RectangleShape2D_mlfbk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_7t5m8")
+
+[node name="Movement Manager" parent="." index="2"]
+retreat = false
+
+[node name="ShootingManager" type="Node" parent="." index="3"]
+script = ExtResource("3_iwpr3")
+shooter_identity = 2
+
+[node name="Shoot Simple" parent="ShootingManager" index="0" instance=ExtResource("4_aegvr")]
+nbOfWaves = 3
+nbOfShots = 6
+angle_expression = "360"
+dt = 0.2
+target_type = 1
+target = Vector2(1000, 1000)
+bullet_scene = ExtResource("5_odb8t")
+angle_shift_expression = "30*salvo"
+bullet_group = SubResource("Resource_vgk5y")
+pooling_id = "aki"
+speed_expression = "200 + (20*index - 40*(index/3)*(index-2))*0"
+
+[node name="Movement Line" parent="ShootingManager/Shoot Simple" index="1" instance=ExtResource("7_wjxrc")]
+speed = 1000.0
+rotate = true

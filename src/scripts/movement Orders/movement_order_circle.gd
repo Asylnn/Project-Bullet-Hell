@@ -25,4 +25,5 @@ func move(entity: Entity, delta:float):
 		entity.rotation = Vector2(cos(angle), -sin(angle)).angle() + PI/2
 	if totalRotation <= abs(angle) - startingAngle :
 		entity.position = calculate_position(startingAngle + totalRotation, r, center)
+		order_reached_destination.emit()
 		queue_free()
