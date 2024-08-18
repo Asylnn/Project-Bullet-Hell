@@ -166,6 +166,8 @@ wait_time = 3.0
 autostart = true
 
 [node name="Test Enemy" parent="Playing Field" instance=ExtResource("11_qtxky")]
+process_mode = 4
+visible = false
 position = Vector2(526, 153)
 
 [node name="Interface" type="Sprite2D" parent="."]

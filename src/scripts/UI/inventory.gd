@@ -2,6 +2,7 @@ extends GridContainer
 
 const INVENTORY_SIZE = 12							## Inventory size
 var mana : int = 0									## Amount of mana stored
+const MAX_MANA = 42
 
 signal update_mana(mana: int)						## Used when the amount of mana stored changed. used for communicating with UI
 
@@ -76,7 +77,7 @@ func _ready():
 
 func _recieved_collectible(collectible : Collectible):
 	if collectible is ManaFlame:
-		mana += collectible.mana
+		mana = max(collectible.mana + mana, MAX_MANA)
 		update_mana.emit(mana)
 	
 	

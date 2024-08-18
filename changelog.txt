@@ -1,3 +1,5 @@
 v016
 
 Fixed pool no longer working
+Added Spellcard description card
+Added mana bar

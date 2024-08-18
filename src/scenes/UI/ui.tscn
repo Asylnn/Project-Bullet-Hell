@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/scripts/UI/ui.gd" id="1_s427g"]
 [ext_resource type="LabelSettings" uid="uid://bx4beocv5cqnq" path="res://src/other/font UI/font_ui.tres" id="2_qxkp4"]
 [ext_resource type="Texture2D" uid="uid://b4at7vnuckd7k" path="res://Sprites/svg/life bar front.svg" id="3_4nx0n"]
-[ext_resource type="Texture2D" uid="uid://d17sggdhgq5o4" path="res://Sprites/svg/life bar progress.svg" id="4_vw86u"]
+[ext_resource type="Texture2D" uid="uid://smkqnb6bom16" path="res://Sprites/svg/life bar under.svg" id="3_4qssv"]
 
 [node name="UI" type="VBoxContainer" groups=["UI"]]
 z_index = 3
@@ -63,7 +63,7 @@ offset_right = 271.0
 offset_bottom = 28.0
 max_value = 10.0
 texture_over = ExtResource("3_4nx0n")
-texture_progress = ExtResource("4_vw86u")
+texture_progress = ExtResource("3_4qssv")
 
 [node name="Mana2" type="TextureProgressBar" parent="ManaBar"]
 layout_mode = 2
@@ -72,7 +72,7 @@ offset_top = -4.0
 offset_right = 445.0
 offset_bottom = 28.0
 texture_over = ExtResource("3_4nx0n")
-texture_progress = ExtResource("4_vw86u")
+texture_progress = ExtResource("3_4qssv")
 
 [node name="Mana3" type="TextureProgressBar" parent="ManaBar"]
 layout_mode = 2
@@ -81,7 +81,7 @@ offset_top = -4.0
 offset_right = 364.0
 offset_bottom = 28.0
 texture_over = ExtResource("3_4nx0n")
-texture_progress = ExtResource("4_vw86u")
+texture_progress = ExtResource("3_4qssv")
 
 [node name="Mana4" type="TextureProgressBar" parent="ManaBar"]
 offset_left = 346.0
@@ -89,7 +89,7 @@ offset_top = -4.0
 offset_right = 538.0
 offset_bottom = 28.0
 texture_over = ExtResource("3_4nx0n")
-texture_progress = ExtResource("4_vw86u")
+texture_progress = ExtResource("3_4qssv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
