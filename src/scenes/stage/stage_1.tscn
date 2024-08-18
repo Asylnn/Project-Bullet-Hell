@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://be6jl7hkhk83f"]
+[gd_scene load_steps=30 format=3 uid="uid://be6jl7hkhk83f"]
 
 [ext_resource type="Script" path="res://src/scripts/Stage/stage_1.gd" id="1_4gyp0"]
 [ext_resource type="PackedScene" uid="uid://da0r78ku1axgl" path="res://src/scenes/entities/player.tscn" id="2_fbvrm"]
@@ -19,8 +19,7 @@
 [ext_resource type="Script" path="res://src/scripts/UI/Node Count.gd" id="15_ixmfg"]
 [ext_resource type="Script" path="res://src/scripts/UI/FPS Counter.gd" id="16_isc8r"]
 [ext_resource type="Script" path="res://src/scripts/Stage/pool.gd" id="19_k02wo"]
-[ext_resource type="LabelSettings" uid="uid://bx4beocv5cqnq" path="res://src/other/font UI/font_ui.tres" id="19_kxt6m"]
-[ext_resource type="Script" path="res://src/scripts/UI/ui.gd" id="19_okfya"]
+[ext_resource type="PackedScene" uid="uid://b0ybgofwa83cu" path="res://src/scenes/UI/ui.tscn" id="20_y0n50"]
 [ext_resource type="Script" path="res://src/scripts/utils/testing.gd" id="22_ggu3u"]
 [ext_resource type="PackedScene" uid="uid://bpmg8fx6mngp5" path="res://src/scenes/UI/spellcard_description.tscn" id="23_xh30t"]
 
@@ -277,52 +276,7 @@ New collectible class
 Added mana flame as enemy drop
 New Score and mana UI"
 
-[node name="UI" type="VBoxContainer" parent="." groups=["UI"]]
-z_index = 3
-offset_left = 1350.0
-offset_top = 185.0
-offset_right = 1797.0
-offset_bottom = 292.0
-script = ExtResource("19_okfya")
-
-[node name="Score" type="HBoxContainer" parent="UI"]
-layout_mode = 2
-
-[node name="Score Label" type="Label" parent="UI/Score"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 3.0
-text = "Score
-"
-label_settings = ExtResource("19_kxt6m")
-
-[node name="Score" type="Label" parent="UI/Score"]
-z_index = 3
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "0"
-label_settings = ExtResource("19_kxt6m")
-
-[node name="Mana" type="HBoxContainer" parent="UI"]
-layout_mode = 2
-
-[node name="Mana Label" type="Label" parent="UI/Mana"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 3.0
-text = "Mana"
-label_settings = ExtResource("19_kxt6m")
-
-[node name="Mana" type="Label" parent="UI/Mana"]
-z_index = 3
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "0"
-label_settings = ExtResource("19_kxt6m")
+[node name="UI" parent="." instance=ExtResource("20_y0n50")]
 
 [node name="Tester" type="Node" parent="."]
 script = ExtResource("22_ggu3u")
