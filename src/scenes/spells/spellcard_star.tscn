@@ -7,10 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://tpf8r0qkncsy" path="res://Sprites/star.png" id="4_n14f7"]
 
 [node name="STAR" instance=ExtResource("1_fdg4u")]
+shot_type = 1
+spellcard_name = "Shooting Syar"
 
 [node name="Shoot Random" parent="ShootingManager" index="0" instance=ExtResource("2_d36dn")]
 angle = 30.0
-nbOfShots = 2
+nbOfShots = 3
 target = Vector2(0, -1)
 target_type = 0
 bullet_scene = ExtResource("3_yfmoq")

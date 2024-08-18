@@ -44,3 +44,11 @@ func desactivate_spell() -> void:
 
 ## Check if the stored [SpellCard] is an Empty SpellCard (no firing abilities)
 func _is_slot_empty(): return get_child(0).name == "Empty SpellCard"
+
+
+func _on_mouse_entered():
+	if get_child(0).name != "Empty SpellCard":
+		get_tree().get_first_node_in_group("Spellcard Description").update_description(get_child(0))
+
+func _on_mouse_exited():
+	get_tree().get_first_node_in_group("Spellcard Description").visible = false

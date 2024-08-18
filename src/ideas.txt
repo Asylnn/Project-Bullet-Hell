@@ -1,0 +1,9 @@
+bar /xxxxxxxxxxxx......./................./..................../.................../
+
+Projectile Img
+Augment : Celestial
+Shot type : Focused, Spread, Homing
+Rate of Fire : 12ps
+Projectile Damage : 4dmg
+#Projectiles : 1
+DPS : 48

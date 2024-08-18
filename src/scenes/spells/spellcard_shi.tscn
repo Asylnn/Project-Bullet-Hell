@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b24npyes88jtp" path="res://Sprites/Friendly Bullet 2.png" id="5_q1r41"]
 
 [node name="SHI" instance=ExtResource("1_68m2j")]
+shot_type = 0
+spellcard_name = "4 Deaths"
 
 [node name="Shoot Simple" parent="ShootingManager" index="0" instance=ExtResource("3_ohubv")]
 target = Vector2(0, -1)

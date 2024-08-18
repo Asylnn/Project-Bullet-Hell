@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b4n0kkhi88kmi" path="res://Sprites/Friendly Bullet.png" id="5_6sgq2"]
 
 [node name="AI" instance=ExtResource("1_cnhpe")]
+shot_type = 0
+spellcard_name = "Ren'Ai"
 
 [node name="Shoot Simple" parent="ShootingManager" index="0" instance=ExtResource("2_rmds1")]
 target = Vector2(0, -1)

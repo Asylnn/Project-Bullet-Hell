@@ -7,11 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://brn224q4iuhsh" path="res://Sprites/arrow.png" id="5_iokoc"]
 
 [node name="ARROW" instance=ExtResource("1_cg88t")]
+shot_type = 2
+spellcard_name = "Jupiter Arrow"
 
 [node name="Shoot Simple" parent="ShootingManager" index="0" instance=ExtResource("2_lic2e")]
 target = Vector2(0, -1)
 bullet_scene = ExtResource("3_vtfow")
-time_between_each_attacks = 0.1
+time_between_each_attacks = 0.15
 damage = 2.0
 pooling_id = "arrow"
 

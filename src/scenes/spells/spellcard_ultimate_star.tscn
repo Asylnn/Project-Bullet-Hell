@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c61d7cfgka6m6" path="res://Sprites/rainbow_star.png" id="5_lx6od"]
 
 [node name="STAR" instance=ExtResource("1_xrefn")]
+shot_type = 1
+spellcard_name = "Big Bang"
 
 [node name="Shoot Random" parent="ShootingManager" index="0" instance=ExtResource("2_q0j17")]
 angle = 180.0
