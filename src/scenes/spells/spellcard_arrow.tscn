@@ -19,7 +19,7 @@ pooling_id = "arrow"
 
 [node name="Movement Homing" parent="ShootingManager/Shoot Simple" index="1" instance=ExtResource("4_fecgh")]
 speed = 1000.0
-mass = 250.0
+mass = 100.0
 
 [node name="Icon" parent="." index="1"]
 texture = ExtResource("5_iokoc")

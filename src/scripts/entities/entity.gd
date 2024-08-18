@@ -5,12 +5,11 @@ var is_pooled : bool = true
 
 func ask_for_being_pooled():
 	if get_tree(): #????????????????????????
-		var pool = get_tree().get_first_node_in_group("Pool")
-		if pool.has_free_space_for_pooling(pooling_id) :
+		if Pool.has_free_space_for_pooling(pooling_id) :
 			get_parent().remove_child(self)
-			pool.put_to_pool(pooling_id, self)
+			Pool.put_to_pool(pooling_id, self)
 		else:
-			pool.report_unfield(pooling_id)
+			Pool.report_unfield(pooling_id)
 			queue_free()
 
 func _ready():

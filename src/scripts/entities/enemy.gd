@@ -22,7 +22,8 @@ func _ready():
 	
 func _on_area_entered(area):
 	health -= area.damage
-	area.queue_free()
+	if area is FriendlyBullet :
+		area.queue_free()
 	if is_boss :
 		get_tree().get_first_node_in_group("Boss Bar").update_bar(health)
 	if health <= 0:

@@ -16,6 +16,7 @@ size = Vector2(54, 66)
 
 [node name="Phantum" groups=["Enemy"] instance=ExtResource("1_wk5ch")]
 collision_layer = 0
+collision_mask = 33
 monitorable = false
 script = ExtResource("2_3dh42")
 health = 40

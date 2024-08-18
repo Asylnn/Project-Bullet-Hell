@@ -10,6 +10,7 @@ class_name Player extends CharacterBody2D
 const SPEED : float = 300.0 										## Speed of the player
 const SHIFT_SPEED_MULTIPLIER : float = 0.5							## Slowing coefficient of pressing shift to slow down the player
 var is_flickering : bool = false							## Is the player ship flickering ? Used in the getting touched animation
+@onready var inventory : Inventory = get_tree().get_first_node_in_group("Inventory")
 
 signal recieved_collectible(collectible : Collectible)		## Signal for signaling if the player recieved a collectible to the inventory
 signal player_hit											## Signal for signaling if the player was hit, used for removing a life from the UI
@@ -25,6 +26,13 @@ func _process(delta):
 	if Input.is_action_pressed("Move Left"): 	position.x += -SPEED*delta*speedMultiplier
 	if Input.is_action_pressed("Move Right"):	position.x += SPEED*delta*speedMultiplier
 
+	if Input.is_action_pressed("Bomb") and not get_tree().get_first_node_in_group("Bomb") and inventory.mana >= 10 :
+		var bomb = preload("res://src/scenes/entities/bomb/bomb.tscn").instantiate()
+		inventory.add_mana(-10)
+		bomb.position.x = position.x
+		bomb.position.y = position.y
+		get_parent().add_child(bomb)
+		 
 func _physics_process(delta): move_and_slide()
 
 func _on_hitbox_area_area_entered(area):

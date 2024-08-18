@@ -1,4 +1,4 @@
-extends GridContainer
+class_name Inventory extends GridContainer
 
 const INVENTORY_SIZE = 12							## Inventory size
 var mana : int = 0									## Amount of mana stored
@@ -72,13 +72,16 @@ func _ready():
 	_add_item(preload("res://src/scenes/spells/spellcard_star.tscn").instantiate())
 	_add_item(preload("res://src/scenes/spells/spellcard_star.tscn").instantiate())
 	_add_item(preload("res://src/scenes/spells/spellcard_ultimate_star.tscn").instantiate())
-	#print_tree()
+	add_mana(20)
+	
 
+func add_mana(_mana : int):
+	mana = min(_mana + mana, MAX_MANA)
+	update_mana.emit(mana)
 
 func _recieved_collectible(collectible : Collectible):
 	if collectible is ManaFlame:
-		mana = max(collectible.mana + mana, MAX_MANA)
-		update_mana.emit(mana)
+		add_mana(collectible.mana)
 	
 	
 func _get_first_free_slot():
