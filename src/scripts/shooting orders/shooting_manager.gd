@@ -51,6 +51,7 @@ func get_pooling_order(shooter: BaseShootingOrder, id : String, number: int):
 		requested_pooling_amount[id] = number
 	if Pool.has_entity(id):
 		Pool.request_entity_pooling(id, number)
+		shooter.erase_children()
 	else: 
 		Pool.request_new_entity_pooling(shooter.provide_constructor(), id, number)
 	

@@ -276,13 +276,15 @@ offset_left = 1261.0
 offset_top = 483.0
 offset_right = 1301.0
 offset_bottom = 506.0
-text = "v015:
-- Code :
-Modified orders so they can accept variable in their fields
-New collectible class
+text = "v016:
+- Code 
+Fixed Pool no longer working
+Allowing Shooting Order to have multiple Movement Order
+Added new shooting parameter allowing parallel projectile and more
 - Features
-Added mana flame as enemy drop
-New Score and mana UI"
+Added Bomb by pressing X/M
+Added mana bar
+Added Spellcard description card"
 
 [node name="UI" parent="." instance=ExtResource("20_y0n50")]
 

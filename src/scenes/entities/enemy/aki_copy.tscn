@@ -18,6 +18,7 @@ nb_of_bullets = 2
 space_between_each_bullet_expression = "30*(wave -1)"
 
 [node name="Aki Copy" instance=ExtResource("1_wyouk")]
+health = 1
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(-2.5, 1.5)
@@ -38,10 +39,9 @@ nbOfWaves = 3
 nbOfShots = 6
 angle_expression = "360"
 dt = 0.2
-target_type = 1
 target = Vector2(1000, 1000)
 bullet_scene = ExtResource("5_odb8t")
-angle_shift_expression = "30*salvo"
+angle_shift_expression = "20*salvo"
 bullet_group = SubResource("Resource_vgk5y")
 pooling_id = "aki"
 speed_expression = "200 + (20*index - 40*(index/3)*(index-2))*0"

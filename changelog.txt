@@ -6,5 +6,10 @@ Added mana bar
 Added bomb
 Better MovementManager code
 Added new shooting parameter allowing parallel projectiles
+Now free up shooting order child when no longer needed
+Better BulletConstructor code allowing for multiple MovementOrder
+Fixed Healing enemy bug
+
 
 TODO : Make it so you can have multiple movement order, add movement line as base order
+

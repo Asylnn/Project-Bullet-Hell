@@ -9,10 +9,11 @@ size = Vector2(5, 36)
 
 [node name="Enemy Bullet" instance=ExtResource("1_sd7st")]
 position = Vector2(110, 104)
-collision_layer = 34
+collision_layer = 66
 collision_mask = 0
 monitoring = false
 script = ExtResource("2_ebt5v")
+test = 10
 type = 2
 
 [node name="CollisionShape2D" parent="." index="0"]

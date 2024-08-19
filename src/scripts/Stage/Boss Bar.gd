@@ -1,6 +1,8 @@
 extends ProgressBar
 
 func update_bar(health: float):
+	print("health", health)
+	print("max value", max_value)
 	value = health
 	
 func boss_spawned(max_health: float): 

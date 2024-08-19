@@ -55,11 +55,21 @@ func provide_constructor() -> BulletConstructor:
 	var constructor : BulletConstructor = preload("res://src/scripts/Stage/bullet_constructor.gd").new()
 	constructor.pooling_id = pooling_id
 	constructor.bullet_scene = bullet_scene
-	constructor.add_child(get_children().filter(func(child): return child is BaseMovementOrder)[0].duplicate())
+	
+	#???????????????
+	for order in get_children().filter(func(child): return child is BaseMovementOrder) :
+		constructor.movement_orders.append(order.duplicate() as BaseMovementOrder)
 	if has_node("ShootingManager"):
-		constructor.add_child(get_children().filter(func(child): return child is ShootingManager)[0].duplicate())
+		constructor.shooting_manager = get_children().filter(func(child): return child is ShootingManager)[0].duplicate()
+	erase_children()
 	return constructor
 	
+## After the constructor has been sent to the pool, this node doesn't need to have it's children along with it.
+func erase_children():
+	for child in get_children():
+		if not child is Timer :
+			child.queue_free()
+
 func _ready():
 	#pooling_id += str(get_children().filter(func(child): return child is BaseMovementOrder)[0].duplicate().speed)
 	bullet_group.resource_for_expression = self
@@ -88,12 +98,6 @@ func activate_bullet(direction: Vector2, rotation: float):
 		index = i
 		var bullet_direction = direction.rotated(rotation)
 		var parallel : Vector2 = bullet_direction.rotated(PI/2).normalized()*bullet_group.space_between_each_bullet
-		print("rotation")
-		print("parallel", parallel)
-		print("space", bullet_group.space_between_each_bullet)
-		print("direction", direction)
-		print("direction rotated", direction.rotated(PI/2))
-		print("direction normalized", direction.rotated(PI/2).normalized())
 		var bullet_position = manager._get_spawn_position()
 		bullet_position += -0.5*(bullet_group.nb_of_bullets - 1)*parallel + parallel*index
 		bullet = manager.pool.provide_entity(pooling_id)
@@ -110,7 +114,6 @@ func activate_bullet(direction: Vector2, rotation: float):
 		
 		var bullet_manager = bullet.find_child("Movement Manager")
 		bullet_manager.set_initial_direction(bullet_direction)
-		print("speed", speed)
 		if speed != -1 :
 			bullet_manager.set_speed(speed)
 		bullet.rotation = bullet_direction.angle() + PI/2 
