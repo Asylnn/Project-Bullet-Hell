@@ -1,2 +1,2 @@
 # Project-Bullet-Hell
-A new Type of Danmaku 
+A very small Shoot'em Up game prototype written using the Godot game engine. 
